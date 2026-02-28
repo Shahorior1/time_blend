@@ -583,6 +583,9 @@ function initShopPage() {
         filtered = filtered.filter(p => p.collection === collectionFilter);
         const checkbox = document.querySelector(`input[value="${collectionFilter}"]`);
         if (checkbox) checkbox.checked = true;
+        document.querySelectorAll('.category-toggle__btn').forEach(btn => {
+            btn.classList.toggle('active', btn.dataset.collection === collectionFilter);
+        });
     }
 
     if (searchQuery) {
@@ -660,15 +663,52 @@ function initShopPage() {
 
     renderProducts(filtered);
 
+    // Category toggle bar
+    document.querySelectorAll('.category-toggle__btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('.category-toggle__btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            const collection = btn.dataset.collection;
+            const url = new URL(window.location);
+            if (collection) {
+                url.searchParams.set('collection', collection);
+            } else {
+                url.searchParams.delete('collection');
+            }
+            window.history.pushState({}, '', url);
+            let result = [...PRODUCTS];
+            if (collection) result = result.filter(p => p.collection === collection);
+            if (searchQuery) {
+                result = result.filter(p =>
+                    p.name.toLowerCase().includes(searchQuery) ||
+                    p.category.toLowerCase().includes(searchQuery)
+                );
+            }
+            document.querySelectorAll('.shop-sidebar .filter-group:first-child .filter-option input[type="checkbox"]').forEach(cb => {
+                cb.checked = cb.value === collection;
+            });
+            renderProducts(result);
+        });
+    });
+
     // Filter checkboxes
     document.querySelectorAll('.filter-option input[type="checkbox"]').forEach(cb => {
         cb.addEventListener('change', () => {
             const checked = Array.from(document.querySelectorAll('.filter-option input[type="checkbox"]:checked'))
                 .map(el => el.value);
+            const collectionChecked = checked.filter(v => ['classic','sport','luxury','vintage'].includes(v));
+
+            // Sync category toggle bar
+            document.querySelectorAll('.category-toggle__btn').forEach(btn => {
+                btn.classList.toggle('active', 
+                    collectionChecked.length === 1 && btn.dataset.collection === collectionChecked[0] ||
+                    collectionChecked.length === 0 && btn.dataset.collection === ''
+                );
+            });
 
             let result = [...PRODUCTS];
-            if (checked.length > 0) {
-                result = result.filter(p => checked.includes(p.collection));
+            if (collectionChecked.length > 0) {
+                result = result.filter(p => collectionChecked.includes(p.collection));
             }
             if (searchQuery) {
                 result = result.filter(p =>

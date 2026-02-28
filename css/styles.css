@@ -1324,6 +1324,55 @@ ul { list-style: none; }
 }
 
 /* =============================================
+   Category Toggle Bar
+   ============================================= */
+.category-toggle-bar {
+    background: var(--bg-secondary);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 0;
+    position: sticky;
+    top: var(--header-height, 80px);
+    z-index: 50;
+}
+
+.category-toggle {
+    display: flex;
+    gap: 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    padding: 0 16px;
+}
+
+.category-toggle::-webkit-scrollbar {
+    display: none;
+}
+
+.category-toggle__btn {
+    flex-shrink: 0;
+    padding: 16px 24px;
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition);
+    white-space: nowrap;
+}
+
+.category-toggle__btn:hover {
+    color: var(--text-primary);
+}
+
+.category-toggle__btn.active {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+}
+
+/* =============================================
    Shop Page Styles
    ============================================= */
 .shop-layout {
@@ -2298,6 +2347,11 @@ ul { list-style: none; }
         flex-direction: column;
         gap: 16px;
         text-align: center;
+    }
+
+    .category-toggle__btn {
+        padding: 14px 18px;
+        font-size: 0.85rem;
     }
 
     .shop-layout {
