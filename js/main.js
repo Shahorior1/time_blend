@@ -597,20 +597,16 @@ function initShopPage() {
         const count = document.querySelector('.shop-toolbar__count');
         if (count) count.textContent = `Showing ${products.length} watches`;
 
-        grid.innerHTML = products.map(p => `
-            <div class="product-card" data-product-id="${p.id}">
+        grid.innerHTML = products.map(p => {
+            const colors = p.colors || [{ name: 'Default', hex: p.accentColor }];
+            const saleLabel = p.badgeType === 'sale' && p.badge ? `SALE${p.badge}` : p.badge;
+            return `
+            <div class="product-card product-card--shop" data-product-id="${p.id}">
                 <div class="product-card__image">
-                    <div class="product-card__placeholder">
-                        <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <circle cx="100" cy="100" r="80" fill="#1a1a1a" stroke="${p.accentColor}" stroke-width="1.5"/>
-                            <circle cx="100" cy="100" r="72" fill="#0d0d0d"/>
-                            <line x1="100" y1="100" x2="100" y2="50" stroke="${p.accentColor}" stroke-width="2.5" stroke-linecap="round"/>
-                            <line x1="100" y1="100" x2="140" y2="80" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/>
-                            <circle cx="100" cy="100" r="3" fill="${p.accentColor}"/>
-                            <text x="100" y="80" text-anchor="middle" fill="${p.accentColor}" font-size="5" letter-spacing="2">TIME BLENDS</text>
-                        </svg>
+                    <div class="product-card__placeholder product-card__watch-preview" data-default-color="${p.accentColor}">
+                        ${createWatchSVG(p.accentColor, 'full')}
                     </div>
-                    ${p.badge ? `<span class="product-card__badge ${p.badgeType === 'new' ? 'badge--new' : p.badgeType === 'sale' ? 'badge--sale' : ''}">${p.badge}</span>` : ''}
+                    ${saleLabel ? `<span class="product-card__badge product-card__badge--oval ${p.badgeType === 'new' ? 'badge--new' : p.badgeType === 'sale' ? 'badge--sale' : ''}">${saleLabel}</span>` : ''}
                     <div class="product-card__actions">
                         <button class="product-card__action-btn quick-view-btn" data-product-id="${p.id}" title="Quick View">
                             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
@@ -624,10 +620,18 @@ function initShopPage() {
                     <p class="product-card__category">${p.category}</p>
                     <h3 class="product-card__name"><a href="product-detail.html?id=${p.id}">${p.name}</a></h3>
                     <p class="product-card__desc">${p.desc}</p>
+                    <div class="product-card__colors">
+                        <span class="product-card__colors-label">Color:</span>
+                        <div class="color-options color-options--card">
+                            ${colors.map((c, i) => `
+                                <button class="color-option color-option--sm ${i === 0 ? 'active' : ''}" data-color="${c.hex}" title="${c.name}" style="--swatch: ${c.hex};"></button>
+                            `).join('')}
+                        </div>
+                    </div>
                     <div class="product-card__footer">
-                        <div>
-                            <span class="product-card__price">$${p.price.toLocaleString()}</span>
-                            ${p.oldPrice ? `<span class="product-card__price--old">$${p.oldPrice.toLocaleString()}</span>` : ''}
+                        <div class="product-card__pricing">
+                            ${p.oldPrice ? `<span class="product-card__price--old">$${p.oldPrice.toLocaleString()}</span> ` : ''}
+                            <span class="product-card__price ${p.oldPrice ? 'product-card__price--sale' : ''}">$${p.price.toLocaleString()}</span>
                         </div>
                         <div class="product-card__btns">
                             <button class="btn btn--small add-to-cart-btn" data-product-id="${p.id}">Add to Cart</button>
@@ -636,7 +640,22 @@ function initShopPage() {
                     </div>
                 </div>
             </div>
-        `).join('');
+            `;
+        }).join('');
+
+        // Color picker on shop cards - update watch preview
+        grid.querySelectorAll('.product-card--shop').forEach(card => {
+            const preview = card.querySelector('.product-card__watch-preview');
+            card.querySelectorAll('.color-option').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    card.querySelectorAll('.color-option').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    const color = btn.dataset.color;
+                    if (preview) preview.innerHTML = createWatchSVG(color, 'full');
+                });
+            });
+        });
     }
 
     renderProducts(filtered);
