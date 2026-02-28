@@ -597,7 +597,7 @@ ul { list-style: none; }
    ============================================= */
 .products__grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 24px;
 }
 
@@ -655,13 +655,18 @@ ul { list-style: none; }
     border-radius: 2px;
 }
 
+.product-card__badge--oval {
+    border-radius: 999px;
+    padding: 4px 10px;
+}
+
 .badge--new {
     background: #2196f3;
     color: #fff;
 }
 
 .badge--sale {
-    background: var(--danger);
+    background: #e74c3c;
     color: #fff;
 }
 
@@ -729,7 +734,35 @@ ul { list-style: none; }
 .product-card__desc {
     font-size: 0.8rem;
     color: var(--text-muted);
-    margin-bottom: 16px;
+    margin-bottom: 12px;
+}
+
+.product-card__colors {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.product-card__colors-label {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+.color-options--card .color-option--sm {
+    width: 20px;
+    height: 20px;
+}
+
+.product-card__pricing {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+.product-card__price--sale {
+    color: #e74c3c;
 }
 
 .product-card__footer {
@@ -737,6 +770,13 @@ ul { list-style: none; }
     align-items: center;
     justify-content: space-between;
     gap: 12px;
+    flex-wrap: wrap;
+}
+
+.product-card__btns {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
 }
 
 .product-card__price {
@@ -1423,7 +1463,7 @@ ul { list-style: none; }
 
 .shop-products__grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 24px;
 }
 
@@ -1548,6 +1588,32 @@ ul { list-style: none; }
     font-weight: 500;
     margin-bottom: 10px;
     display: block;
+}
+
+.color-options {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.color-option {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 2px solid var(--border);
+    cursor: pointer;
+    background: var(--swatch, var(--accent));
+    transition: var(--transition);
+}
+
+.color-option:hover {
+    border-color: var(--accent);
+    transform: scale(1.1);
+}
+
+.color-option.active {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 2px var(--bg-primary), 0 0 0 4px var(--accent);
 }
 
 .strap-options {
@@ -2113,10 +2179,7 @@ ul { list-style: none; }
    Responsive Design
    ============================================= */
 @media (max-width: 1024px) {
-    .products__grid {
-        grid-template-columns: repeat(3, 1fr);
-    }
-
+    .products__grid,
     .shop-products__grid {
         grid-template-columns: repeat(2, 1fr);
     }
