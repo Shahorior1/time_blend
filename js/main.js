@@ -1,5 +1,5 @@
 /* =============================================
-   TIME BLENDS - Main JavaScript
+   TIME BLEND - Main JavaScript
    ============================================= */
 
 const PRODUCTS = [
@@ -568,7 +568,7 @@ const PRODUCTS = [
 // ==========================================
 class Cart {
     constructor() {
-        this.items = JSON.parse(localStorage.getItem('timeblends_cart')) || [];
+        this.items = JSON.parse(localStorage.getItem('timeblend_cart')) || [];
         this.updateCount();
     }
 
@@ -618,7 +618,7 @@ class Cart {
     }
 
     save() {
-        localStorage.setItem('timeblends_cart', JSON.stringify(this.items));
+        localStorage.setItem('timeblend_cart', JSON.stringify(this.items));
     }
 
     updateCount() {
@@ -788,7 +788,7 @@ function initQuickView() {
                         <line x1="100" y1="100" x2="100" y2="50" stroke="${product.accentColor}" stroke-width="2.5" stroke-linecap="round"/>
                         <line x1="100" y1="100" x2="140" y2="80" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/>
                         <circle cx="100" cy="100" r="3" fill="${product.accentColor}"/>
-                        <text x="100" y="80" text-anchor="middle" fill="${product.accentColor}" font-size="5" letter-spacing="2">TIME BLENDS</text>
+                        <text x="100" y="80" text-anchor="middle" fill="${product.accentColor}" font-size="5" letter-spacing="2">TIME BLEND</text>
                     </svg>
                 </div>
                 <div class="quick-view__info">
@@ -896,7 +896,7 @@ function initShopPage() {
                             <line x1="100" y1="100" x2="100" y2="50" stroke="${p.accentColor}" stroke-width="2.5" stroke-linecap="round"/>
                             <line x1="100" y1="100" x2="140" y2="80" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/>
                             <circle cx="100" cy="100" r="3" fill="${p.accentColor}"/>
-                            <text x="100" y="80" text-anchor="middle" fill="${p.accentColor}" font-size="5" letter-spacing="2">TIME BLENDS</text>
+                            <text x="100" y="80" text-anchor="middle" fill="${p.accentColor}" font-size="5" letter-spacing="2">TIME BLEND</text>
                         </svg>
                     </div>
                     ${p.badge ? `<span class="product-card__badge ${p.badgeType === 'new' ? 'badge--new' : p.badgeType === 'sale' ? 'badge--sale' : ''}">${p.badge}</span>` : ''}
@@ -992,7 +992,7 @@ function initProductDetail() {
         return;
     }
 
-    document.title = `${product.name} - Time Blends`;
+    document.title = `${product.name} - Time Blend`;
 
     const breadcrumbName = document.getElementById('productBreadcrumb');
     if (breadcrumbName) breadcrumbName.textContent = product.name;
@@ -1100,7 +1100,7 @@ function createWatchSVG(color, size) {
         <line x1="100" y1="100" x2="100" y2="50" stroke="${color}" stroke-width="2.5" stroke-linecap="round"/>
         <line x1="100" y1="100" x2="140" y2="80" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/>
         <circle cx="100" cy="100" r="3" fill="${color}"/>
-        ${size === 'large' ? `<text x="100" y="80" text-anchor="middle" fill="${color}" font-size="5" letter-spacing="2">TIME BLENDS</text>` : ''}
+        ${size === 'large' ? `<text x="100" y="80" text-anchor="middle" fill="${color}" font-size="5" letter-spacing="2">TIME BLEND</text>` : ''}
     </svg>`;
 }
 

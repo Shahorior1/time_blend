@@ -13,6 +13,6 @@
   <circle cx="18" cy="20" r="1.5" fill="#c8a96e"/>
   <!-- Brand text -->
   <text x="42" y="17" font-family="'Playfair Display', Georgia, serif" font-size="16" font-weight="600" fill="#ffffff" letter-spacing="1">Time</text>
-  <text x="96" y="17" font-family="'Playfair Display', Georgia, serif" font-size="16" font-weight="600" fill="#c8a96e" letter-spacing="1">Blends</text>
+  <text x="96" y="17" font-family="'Playfair Display', Georgia, serif" font-size="16" font-weight="600" fill="#c8a96e" letter-spacing="1">Blend</text>
   <text x="42" y="31" font-family="'Inter', sans-serif" font-size="5.5" fill="#888888" letter-spacing="3.5">LUXURY TIMEPIECES</text>
 </svg>

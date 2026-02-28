@@ -17,8 +17,8 @@
   <rect x="28" y="68" width="16" height="8" rx="2" fill="none" stroke="#ffffff" stroke-width="0.8" opacity="0.3"/>
   <!-- Brand text: TIME -->
   <text x="82" y="35" font-family="'Playfair Display', Georgia, serif" font-size="28" font-weight="600" fill="#ffffff" letter-spacing="3">TIME</text>
-  <!-- Brand text: BLENDS -->
-  <text x="82" y="62" font-family="'Playfair Display', Georgia, serif" font-size="28" font-weight="600" fill="#c8a96e" letter-spacing="3">BLENDS</text>
+  <!-- Brand text: BLEND -->
+  <text x="82" y="62" font-family="'Playfair Display', Georgia, serif" font-size="28" font-weight="600" fill="#c8a96e" letter-spacing="3">BLEND</text>
   <!-- Tagline -->
   <text x="83" y="74" font-family="'Inter', sans-serif" font-size="7" fill="#888888" letter-spacing="4" text-transform="uppercase">LUXURY TIMEPIECES</text>
 </svg>
