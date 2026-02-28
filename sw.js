@@ -1,5 +1,5 @@
-/* Time Blends - Service Worker */
-const CACHE_NAME = 'timeblends-v1';
+/* Time Blend - Service Worker */
+const CACHE_NAME = 'timeblend-v1';
 
 self.addEventListener('install', (event) => {
   self.skipWaiting();

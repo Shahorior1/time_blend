@@ -1,5 +1,5 @@
 /* =============================================
-   TIME BLENDS - Main JavaScript
+   TIME BLEND - Main JavaScript
    ============================================= */
 
 const PRODUCTS = [
@@ -254,7 +254,7 @@ const PRODUCTS = [
 // ==========================================
 class Cart {
     constructor() {
-        this.items = JSON.parse(localStorage.getItem('timeblends_cart')) || [];
+        this.items = JSON.parse(localStorage.getItem('timeblend_cart')) || [];
         this.updateCount();
     }
 
@@ -309,7 +309,7 @@ class Cart {
     }
 
     save() {
-        localStorage.setItem('timeblends_cart', JSON.stringify(this.items));
+        localStorage.setItem('timeblend_cart', JSON.stringify(this.items));
     }
 
     updateCount() {
@@ -768,7 +768,7 @@ function initProductDetail() {
         return;
     }
 
-    document.title = `${product.name} - Time Blends`;
+    document.title = `${product.name} - Time Blend`;
 
     // Feature pills from specs (Movement, Crystal, Case Size)
     const movement = product.specs['Movement'] ? product.specs['Movement'].split(/[(\s]/)[0].toUpperCase() : '';
@@ -887,7 +887,7 @@ function createWatchSVG(color, size) {
         <line x1="100" y1="100" x2="100" y2="50" stroke="${color}" stroke-width="2.5" stroke-linecap="round"/>
         <line x1="100" y1="100" x2="140" y2="80" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/>
         <circle cx="100" cy="100" r="3" fill="${color}"/>
-        ${(size === 'large' || size === 'full') ? `<text x="100" y="80" text-anchor="middle" fill="${color}" font-size="5" letter-spacing="2">TIME BLENDS</text>` : ''}
+        ${(size === 'large' || size === 'full') ? `<text x="100" y="80" text-anchor="middle" fill="${color}" font-size="5" letter-spacing="2">TIME BLEND</text>` : ''}
     </svg>`;
 }
 
