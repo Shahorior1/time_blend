@@ -505,14 +505,30 @@ ul { list-style: none; }
 }
 .price-currency { font-size: 1.4rem; vertical-align: top; margin-right: 2px; }
 
-/* Buttons (left side, after price) */
+/* Buttons (side of watch) */
 .hero-slide__buttons {
-    display: flex; gap: 14px; flex-wrap: wrap;
-    opacity: 0; transform: translateY(15px);
+    position: absolute;
+    right: -60px;
+    top: 50%;
+    transform: translateY(-50%) translateX(20px);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    opacity: 0;
+    z-index: 5;
 }
 .hero-slide.active .hero-slide__buttons {
-    opacity: 1; transform: translateY(0);
-    transition: all 0.5s ease 0.85s;
+    opacity: 1;
+    transform: translateY(-50%) translateX(0);
+    transition: all 0.6s ease 0.9s;
+}
+.hero-slide__buttons .btn {
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    padding: 20px 12px;
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    white-space: nowrap;
 }
 .btn--glow {
     position: relative; overflow: hidden;
@@ -529,6 +545,7 @@ ul { list-style: none; }
 .hero-slide__visual {
     display: flex; justify-content: center; align-items: center;
     position: relative; perspective: 800px;
+    gap: 0;
 }
 .hero-slide__glow {
     position: absolute; width: 350px; height: 350px; border-radius: 50%;
@@ -2647,6 +2664,17 @@ ul { list-style: none; }
 
     .hero-slide__watch {
         max-width: 200px;
+    }
+
+    .hero-slide__buttons {
+        position: absolute;
+        right: -45px;
+        writing-mode: vertical-rl;
+    }
+
+    .hero-slide__buttons .btn {
+        padding: 16px 10px;
+        font-size: 0.65rem;
     }
 
     .hero-slider__brand,
