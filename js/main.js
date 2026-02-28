@@ -1071,6 +1071,204 @@ function initWishlist() {
 }
 
 // ==========================================
+// Hero Slider
+// ==========================================
+function initHeroSlider() {
+    const slider = document.getElementById('heroSlider');
+    if (!slider) return;
+
+    const slides = slider.querySelectorAll('.hero-slide');
+    const dots = slider.querySelectorAll('.hero-slider__dot');
+    const prevBtn = document.getElementById('heroPrev');
+    const nextBtn = document.getElementById('heroNext');
+    const progressBar = document.getElementById('heroProgress');
+
+    let current = 0;
+    let autoplayInterval;
+    let progressInterval;
+    const SLIDE_DURATION = 5000;
+    const PROGRESS_STEP = 50;
+
+    function goToSlide(index) {
+        slides[current].classList.remove('active');
+        dots[current].classList.remove('active');
+
+        current = (index + slides.length) % slides.length;
+
+        slides[current].classList.add('active');
+        dots[current].classList.add('active');
+
+        resetProgress();
+    }
+
+    function nextSlide() {
+        goToSlide(current + 1);
+    }
+
+    function prevSlide() {
+        goToSlide(current - 1);
+    }
+
+    function resetProgress() {
+        if (progressBar) {
+            progressBar.style.transition = 'none';
+            progressBar.style.width = '0%';
+            void progressBar.offsetWidth;
+            progressBar.style.transition = `width ${SLIDE_DURATION}ms linear`;
+            progressBar.style.width = '100%';
+        }
+    }
+
+    function startAutoplay() {
+        stopAutoplay();
+        resetProgress();
+        autoplayInterval = setInterval(nextSlide, SLIDE_DURATION);
+    }
+
+    function stopAutoplay() {
+        clearInterval(autoplayInterval);
+    }
+
+    nextBtn?.addEventListener('click', () => { nextSlide(); startAutoplay(); });
+    prevBtn?.addEventListener('click', () => { prevSlide(); startAutoplay(); });
+
+    dots.forEach(dot => {
+        dot.addEventListener('click', () => {
+            const idx = parseInt(dot.dataset.slide);
+            if (idx !== current) {
+                goToSlide(idx);
+                startAutoplay();
+            }
+        });
+    });
+
+    // Touch/swipe support
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    slider.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+        stopAutoplay();
+    }, { passive: true });
+
+    slider.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        const diff = touchStartX - touchEndX;
+        if (Math.abs(diff) > 50) {
+            if (diff > 0) nextSlide();
+            else prevSlide();
+        }
+        startAutoplay();
+    }, { passive: true });
+
+    // Pause on hover
+    slider.addEventListener('mouseenter', stopAutoplay);
+    slider.addEventListener('mouseleave', startAutoplay);
+
+    startAutoplay();
+}
+
+// ==========================================
+// Products Carousel
+// ==========================================
+function initProductsCarousel() {
+    const carousel = document.getElementById('productsCarousel');
+    if (!carousel) return;
+
+    const track = document.getElementById('carouselTrack');
+    const prevBtn = document.getElementById('carouselPrev');
+    const nextBtn = document.getElementById('carouselNext');
+
+    if (!track) return;
+
+    const cards = track.querySelectorAll('.product-card');
+    let position = 0;
+
+    function getVisibleCount() {
+        const w = window.innerWidth;
+        if (w <= 480) return 1;
+        if (w <= 768) return 2;
+        if (w <= 1024) return 3;
+        return 4;
+    }
+
+    function getCardWidth() {
+        const card = cards[0];
+        if (!card) return 0;
+        const style = getComputedStyle(track);
+        const gap = parseInt(style.gap) || 24;
+        return card.offsetWidth + gap;
+    }
+
+    function maxPosition() {
+        return Math.max(0, cards.length - getVisibleCount());
+    }
+
+    function updateTrack() {
+        const cardWidth = getCardWidth();
+        track.style.transform = `translateX(-${position * cardWidth}px)`;
+    }
+
+    prevBtn?.addEventListener('click', () => {
+        position = Math.max(0, position - 1);
+        updateTrack();
+    });
+
+    nextBtn?.addEventListener('click', () => {
+        position = Math.min(maxPosition(), position + 1);
+        updateTrack();
+    });
+
+    // Touch swipe for carousel
+    let carouselTouchStart = 0;
+    let carouselTouchEnd = 0;
+
+    carousel.addEventListener('touchstart', (e) => {
+        carouselTouchStart = e.changedTouches[0].screenX;
+    }, { passive: true });
+
+    carousel.addEventListener('touchend', (e) => {
+        carouselTouchEnd = e.changedTouches[0].screenX;
+        const diff = carouselTouchStart - carouselTouchEnd;
+        if (Math.abs(diff) > 40) {
+            if (diff > 0) {
+                position = Math.min(maxPosition(), position + 1);
+            } else {
+                position = Math.max(0, position - 1);
+            }
+            updateTrack();
+        }
+    }, { passive: true });
+
+    // Auto-scroll carousel slowly
+    let carouselAutoplay = setInterval(() => {
+        if (position >= maxPosition()) {
+            position = 0;
+        } else {
+            position++;
+        }
+        updateTrack();
+    }, 4000);
+
+    carousel.addEventListener('mouseenter', () => clearInterval(carouselAutoplay));
+    carousel.addEventListener('mouseleave', () => {
+        carouselAutoplay = setInterval(() => {
+            if (position >= maxPosition()) {
+                position = 0;
+            } else {
+                position++;
+            }
+            updateTrack();
+        }, 4000);
+    });
+
+    window.addEventListener('resize', () => {
+        position = Math.min(position, maxPosition());
+        updateTrack();
+    });
+}
+
+// ==========================================
 // Initialize
 // ==========================================
 document.addEventListener('DOMContentLoaded', () => {
@@ -1086,4 +1284,6 @@ document.addEventListener('DOMContentLoaded', () => {
     initProductDetail();
     initCartPage();
     initWishlist();
+    initHeroSlider();
+    initProductsCarousel();
 });

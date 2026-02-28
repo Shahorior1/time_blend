@@ -52,60 +52,179 @@
         </div>
     </div>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero__bg">
-            <div class="hero__gradient"></div>
-        </div>
-        <div class="hero__content container">
-            <div class="hero__text">
-                <p class="hero__subtitle fade-in">Crafted for Excellence</p>
-                <h1 class="hero__title fade-in">Where Time Meets <span class="text-accent">Elegance</span></h1>
-                <p class="hero__description fade-in">Discover our curated collection of luxury timepieces that blend timeless craftsmanship with contemporary design. Each watch tells a story of precision and beauty.</p>
-                <div class="hero__buttons fade-in">
-                    <a href="shop.html" class="btn btn--primary">Explore Collection</a>
-                    <a href="about.html" class="btn btn--outline">Our Story</a>
+    <!-- Hero Slider -->
+    <section class="hero-slider" id="heroSlider">
+        <div class="hero-slider__slides">
+            <!-- Slide 1 -->
+            <div class="hero-slide active" data-accent="#c8a96e">
+                <div class="hero-slide__bg" style="background: radial-gradient(ellipse at 65% 50%, rgba(200,169,110,0.1) 0%, transparent 60%);"></div>
+                <div class="hero-slide__content container">
+                    <div class="hero-slide__text">
+                        <p class="hero-slide__collection">Classic Collection</p>
+                        <h2 class="hero-slide__name">Midnight Sovereign</h2>
+                        <p class="hero-slide__desc">42mm automatic movement with sapphire crystal. The essence of timeless sophistication.</p>
+                        <p class="hero-slide__price">$1,295</p>
+                        <div class="hero-slide__buttons">
+                            <a href="product-detail.html?id=1" class="btn btn--primary">Shop Now</a>
+                            <button class="btn btn--outline add-to-cart-btn" data-product-id="1">Add to Cart</button>
+                        </div>
+                    </div>
+                    <div class="hero-slide__visual">
+                        <div class="hero-slide__glow" style="background: radial-gradient(circle, rgba(200,169,110,0.15) 0%, transparent 70%);"></div>
+                        <svg class="hero-slide__watch" viewBox="0 0 300 400" fill="none">
+                            <rect x="110" y="0" width="80" height="80" rx="5" fill="#2a2a2a" stroke="#c8a96e" stroke-width="1"/>
+                            <rect x="110" y="320" width="80" height="80" rx="5" fill="#2a2a2a" stroke="#c8a96e" stroke-width="1"/>
+                            <circle cx="150" cy="200" r="120" fill="#1a1a1a" stroke="#c8a96e" stroke-width="2"/>
+                            <circle cx="150" cy="200" r="110" fill="#0d0d0d" stroke="#3a3a3a" stroke-width="1"/>
+                            <line x1="150" y1="95" x2="150" y2="108" stroke="#c8a96e" stroke-width="2"/>
+                            <line x1="150" y1="292" x2="150" y2="305" stroke="#c8a96e" stroke-width="2"/>
+                            <line x1="45" y1="200" x2="58" y2="200" stroke="#c8a96e" stroke-width="2"/>
+                            <line x1="242" y1="200" x2="255" y2="200" stroke="#c8a96e" stroke-width="2"/>
+                            <line x1="150" y1="200" x2="150" y2="140" stroke="#c8a96e" stroke-width="3" stroke-linecap="round"/>
+                            <line x1="150" y1="200" x2="190" y2="160" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+                            <circle cx="150" cy="200" r="5" fill="#c8a96e"/>
+                            <text x="150" y="165" text-anchor="middle" fill="#c8a96e" font-size="8" font-family="serif" letter-spacing="3">TIME BLENDS</text>
+                        </svg>
+                    </div>
                 </div>
             </div>
-            <div class="hero__visual fade-in">
-                <div class="hero__watch-display">
-                    <div class="watch-glow"></div>
-                    <svg class="hero__watch-svg" viewBox="0 0 300 400" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect x="110" y="0" width="80" height="80" rx="5" fill="#2a2a2a" stroke="#c8a96e" stroke-width="1"/>
-                        <rect x="110" y="320" width="80" height="80" rx="5" fill="#2a2a2a" stroke="#c8a96e" stroke-width="1"/>
-                        <circle cx="150" cy="200" r="120" fill="#1a1a1a" stroke="#c8a96e" stroke-width="2"/>
-                        <circle cx="150" cy="200" r="110" fill="#0d0d0d" stroke="#3a3a3a" stroke-width="1"/>
-                        <circle cx="150" cy="200" r="105" fill="none" stroke="#c8a96e" stroke-width="0.5" opacity="0.3"/>
-                        <!-- Hour markers -->
-                        <line x1="150" y1="95" x2="150" y2="108" stroke="#c8a96e" stroke-width="2"/>
-                        <line x1="150" y1="292" x2="150" y2="305" stroke="#c8a96e" stroke-width="2"/>
-                        <line x1="45" y1="200" x2="58" y2="200" stroke="#c8a96e" stroke-width="2"/>
-                        <line x1="242" y1="200" x2="255" y2="200" stroke="#c8a96e" stroke-width="2"/>
-                        <!-- Minor markers -->
-                        <circle cx="196" cy="120" r="1.5" fill="#c8a96e" opacity="0.6"/>
-                        <circle cx="230" cy="154" r="1.5" fill="#c8a96e" opacity="0.6"/>
-                        <circle cx="230" cy="246" r="1.5" fill="#c8a96e" opacity="0.6"/>
-                        <circle cx="196" cy="280" r="1.5" fill="#c8a96e" opacity="0.6"/>
-                        <circle cx="104" cy="280" r="1.5" fill="#c8a96e" opacity="0.6"/>
-                        <circle cx="70" cy="246" r="1.5" fill="#c8a96e" opacity="0.6"/>
-                        <circle cx="70" cy="154" r="1.5" fill="#c8a96e" opacity="0.6"/>
-                        <circle cx="104" cy="120" r="1.5" fill="#c8a96e" opacity="0.6"/>
-                        <!-- Hour hand -->
-                        <line x1="150" y1="200" x2="150" y2="140" stroke="#c8a96e" stroke-width="3" stroke-linecap="round"/>
-                        <!-- Minute hand -->
-                        <line x1="150" y1="200" x2="190" y2="160" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
-                        <!-- Second hand -->
-                        <line x1="150" y1="200" x2="150" y2="110" stroke="#c8a96e" stroke-width="1" stroke-linecap="round" class="second-hand"/>
-                        <!-- Center -->
-                        <circle cx="150" cy="200" r="5" fill="#c8a96e"/>
-                        <circle cx="150" cy="200" r="2" fill="#0d0d0d"/>
-                        <!-- Brand text -->
-                        <text x="150" y="165" text-anchor="middle" fill="#c8a96e" font-size="8" font-family="serif" letter-spacing="3">TIME BLENDS</text>
-                        <text x="150" y="240" text-anchor="middle" fill="#888" font-size="6" font-family="sans-serif" letter-spacing="2">AUTOMATIC</text>
-                    </svg>
+
+            <!-- Slide 2 -->
+            <div class="hero-slide" data-accent="#4169e1">
+                <div class="hero-slide__bg" style="background: radial-gradient(ellipse at 65% 50%, rgba(65,105,225,0.1) 0%, transparent 60%);"></div>
+                <div class="hero-slide__content container">
+                    <div class="hero-slide__text">
+                        <p class="hero-slide__collection">Premium Collection</p>
+                        <h2 class="hero-slide__name">Diamond Constellation</h2>
+                        <p class="hero-slide__desc">38mm Swiss automatic with 48 brilliant-cut diamonds. Aventurine dial that mimics the night sky.</p>
+                        <p class="hero-slide__price">$4,200</p>
+                        <div class="hero-slide__buttons">
+                            <a href="product-detail.html?id=10" class="btn btn--primary">Shop Now</a>
+                            <button class="btn btn--outline add-to-cart-btn" data-product-id="10">Add to Cart</button>
+                        </div>
+                    </div>
+                    <div class="hero-slide__visual">
+                        <div class="hero-slide__glow" style="background: radial-gradient(circle, rgba(65,105,225,0.15) 0%, transparent 70%);"></div>
+                        <svg class="hero-slide__watch" viewBox="0 0 300 400" fill="none">
+                            <rect x="110" y="0" width="80" height="80" rx="5" fill="#1a1a2e" stroke="#4169e1" stroke-width="1"/>
+                            <rect x="110" y="320" width="80" height="80" rx="5" fill="#1a1a2e" stroke="#4169e1" stroke-width="1"/>
+                            <circle cx="150" cy="200" r="120" fill="#0d0d1a" stroke="#4169e1" stroke-width="2"/>
+                            <circle cx="150" cy="200" r="110" fill="#06061a" stroke="#2a2a4a" stroke-width="1"/>
+                            <circle cx="150" cy="200" r="116" fill="none" stroke="#4169e1" stroke-width="0.3" stroke-dasharray="2 4"/>
+                            <line x1="150" y1="95" x2="150" y2="108" stroke="#4169e1" stroke-width="2"/>
+                            <line x1="150" y1="292" x2="150" y2="305" stroke="#4169e1" stroke-width="2"/>
+                            <line x1="45" y1="200" x2="58" y2="200" stroke="#4169e1" stroke-width="2"/>
+                            <line x1="242" y1="200" x2="255" y2="200" stroke="#4169e1" stroke-width="2"/>
+                            <line x1="150" y1="200" x2="155" y2="130" stroke="#4169e1" stroke-width="3" stroke-linecap="round"/>
+                            <line x1="150" y1="200" x2="105" y2="165" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+                            <circle cx="150" cy="200" r="5" fill="#4169e1"/>
+                            <text x="150" y="165" text-anchor="middle" fill="#4169e1" font-size="8" font-family="serif" letter-spacing="3">TIME BLENDS</text>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 3 -->
+            <div class="hero-slide" data-accent="#e5e4e2">
+                <div class="hero-slide__bg" style="background: radial-gradient(ellipse at 65% 50%, rgba(229,228,226,0.08) 0%, transparent 60%);"></div>
+                <div class="hero-slide__content container">
+                    <div class="hero-slide__text">
+                        <p class="hero-slide__collection">Premium Collection</p>
+                        <h2 class="hero-slide__name">Platinum Tourbillon</h2>
+                        <p class="hero-slide__desc">40mm hand-assembled tourbillon in solid 950 platinum. Limited to 50 pieces worldwide.</p>
+                        <p class="hero-slide__price">$5,850</p>
+                        <div class="hero-slide__buttons">
+                            <a href="product-detail.html?id=9" class="btn btn--primary">Shop Now</a>
+                            <button class="btn btn--outline add-to-cart-btn" data-product-id="9">Add to Cart</button>
+                        </div>
+                    </div>
+                    <div class="hero-slide__visual">
+                        <div class="hero-slide__glow" style="background: radial-gradient(circle, rgba(229,228,226,0.1) 0%, transparent 70%);"></div>
+                        <svg class="hero-slide__watch" viewBox="0 0 300 400" fill="none">
+                            <rect x="110" y="0" width="80" height="80" rx="5" fill="#1e1e1e" stroke="#e5e4e2" stroke-width="1"/>
+                            <rect x="110" y="320" width="80" height="80" rx="5" fill="#1e1e1e" stroke="#e5e4e2" stroke-width="1"/>
+                            <circle cx="150" cy="200" r="120" fill="#0d0d0d" stroke="#e5e4e2" stroke-width="1.5"/>
+                            <circle cx="150" cy="200" r="110" fill="#080808" stroke="#333" stroke-width="0.5"/>
+                            <circle cx="150" cy="280" r="20" fill="none" stroke="#e5e4e2" stroke-width="0.5"/>
+                            <circle cx="150" cy="280" r="14" fill="none" stroke="#e5e4e2" stroke-width="0.3"/>
+                            <text x="150" y="60" text-anchor="middle" fill="#e5e4e2" font-size="8" font-family="serif">XII</text>
+                            <text x="252" y="204" text-anchor="middle" fill="#e5e4e2" font-size="8" font-family="serif">III</text>
+                            <text x="48" y="204" text-anchor="middle" fill="#e5e4e2" font-size="8" font-family="serif">IX</text>
+                            <line x1="150" y1="200" x2="150" y2="130" stroke="#e5e4e2" stroke-width="3" stroke-linecap="round"/>
+                            <line x1="150" y1="200" x2="210" y2="175" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+                            <circle cx="150" cy="200" r="5" fill="#e5e4e2"/>
+                            <text x="150" y="165" text-anchor="middle" fill="#e5e4e2" font-size="7" font-family="serif" letter-spacing="3">TIME BLENDS</text>
+                            <text x="150" y="178" text-anchor="middle" fill="#888" font-size="5" letter-spacing="2">TOURBILLON</text>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 4 -->
+            <div class="hero-slide" data-accent="#d4af37">
+                <div class="hero-slide__bg" style="background: radial-gradient(ellipse at 65% 50%, rgba(212,175,55,0.1) 0%, transparent 60%);"></div>
+                <div class="hero-slide__content container">
+                    <div class="hero-slide__text">
+                        <p class="hero-slide__collection">Luxury Collection</p>
+                        <h2 class="hero-slide__name">Golden Heritage</h2>
+                        <p class="hero-slide__desc">40mm Swiss automatic in 18K gold. Mother-of-pearl dial with hand-finished details.</p>
+                        <p class="hero-slide__price">$2,450</p>
+                        <div class="hero-slide__buttons">
+                            <a href="product-detail.html?id=3" class="btn btn--primary">Shop Now</a>
+                            <button class="btn btn--outline add-to-cart-btn" data-product-id="3">Add to Cart</button>
+                        </div>
+                    </div>
+                    <div class="hero-slide__visual">
+                        <div class="hero-slide__glow" style="background: radial-gradient(circle, rgba(212,175,55,0.15) 0%, transparent 70%);"></div>
+                        <svg class="hero-slide__watch" viewBox="0 0 300 400" fill="none">
+                            <rect x="110" y="0" width="80" height="80" rx="5" fill="#2a2510" stroke="#d4af37" stroke-width="1"/>
+                            <rect x="110" y="320" width="80" height="80" rx="5" fill="#2a2510" stroke="#d4af37" stroke-width="1"/>
+                            <circle cx="150" cy="200" r="120" fill="#1a1a10" stroke="#d4af37" stroke-width="2"/>
+                            <circle cx="150" cy="200" r="110" fill="#0d0d08" stroke="#3a3520" stroke-width="1"/>
+                            <line x1="150" y1="95" x2="150" y2="108" stroke="#d4af37" stroke-width="2"/>
+                            <line x1="150" y1="292" x2="150" y2="305" stroke="#d4af37" stroke-width="2"/>
+                            <line x1="45" y1="200" x2="58" y2="200" stroke="#d4af37" stroke-width="2"/>
+                            <line x1="242" y1="200" x2="255" y2="200" stroke="#d4af37" stroke-width="2"/>
+                            <line x1="150" y1="200" x2="165" y2="140" stroke="#d4af37" stroke-width="3" stroke-linecap="round"/>
+                            <line x1="150" y1="200" x2="100" y2="175" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+                            <circle cx="150" cy="200" r="5" fill="#d4af37"/>
+                            <text x="150" y="165" text-anchor="middle" fill="#d4af37" font-size="8" font-family="serif" letter-spacing="3">TIME BLENDS</text>
+                        </svg>
+                    </div>
                 </div>
             </div>
         </div>
+
+        <!-- Blending Brand Name Overlay -->
+        <div class="hero-slider__brand">
+            <span class="brand-blend" id="brandBlend">
+                <span class="brand-blend__time">Time</span><span class="brand-blend__blends">Blends</span>
+            </span>
+        </div>
+
+        <!-- Slider Controls -->
+        <div class="hero-slider__controls">
+            <button class="hero-slider__arrow hero-slider__prev" id="heroPrev" aria-label="Previous">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+            </button>
+            <button class="hero-slider__arrow hero-slider__next" id="heroNext" aria-label="Next">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
+        </div>
+
+        <!-- Slider Dots -->
+        <div class="hero-slider__dots" id="heroDots">
+            <button class="hero-slider__dot active" data-slide="0"></button>
+            <button class="hero-slider__dot" data-slide="1"></button>
+            <button class="hero-slider__dot" data-slide="2"></button>
+            <button class="hero-slider__dot" data-slide="3"></button>
+        </div>
+
+        <!-- Progress Bar -->
+        <div class="hero-slider__progress">
+            <div class="hero-slider__progress-bar" id="heroProgress"></div>
+        </div>
+
         <div class="hero__scroll">
             <span>Scroll to explore</span>
             <div class="scroll-indicator"></div>
@@ -156,7 +275,12 @@
                 <h2 class="section__title">Featured <span class="text-accent">Timepieces</span></h2>
                 <p class="section__description">Our most sought-after watches, selected for their exceptional craftsmanship and timeless appeal.</p>
             </div>
-            <div class="products__grid">
+            <div class="products-carousel" id="productsCarousel">
+                <button class="carousel__arrow carousel__prev" id="carouselPrev" aria-label="Previous">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+                </button>
+                <div class="carousel__viewport">
+                    <div class="carousel__track" id="carouselTrack">
                 <div class="product-card" data-product-id="1">
                     <div class="product-card__image">
                         <div class="product-card__placeholder">
@@ -431,6 +555,11 @@
                         </div>
                     </div>
                 </div>
+                    </div>
+                </div>
+                <button class="carousel__arrow carousel__next" id="carouselNext" aria-label="Next">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+                </button>
             </div>
             <div class="section__cta">
                 <a href="shop.html" class="btn btn--primary">View All Watches</a>
