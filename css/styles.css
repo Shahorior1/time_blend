@@ -1293,6 +1293,46 @@ ul { list-style: none; }
 }
 
 /* =============================================
+   Smart Watch Section
+   ============================================= */
+.smartwatch-section {
+    background: var(--bg-primary);
+    position: relative;
+    overflow: hidden;
+}
+
+.smartwatch-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 50% 0%, rgba(0,188,212,0.04) 0%, transparent 60%);
+    pointer-events: none;
+}
+
+.smartwatch-section .container {
+    position: relative;
+    z-index: 1;
+}
+
+.smartwatch-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+
+@media (max-width: 1024px) {
+    .smartwatch-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .smartwatch-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* =============================================
    About Preview
    ============================================= */
 .about-preview__grid {
