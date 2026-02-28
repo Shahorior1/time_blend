@@ -127,6 +127,33 @@ ul { list-style: none; }
     align-items: center;
     gap: 8px;
     z-index: 1001;
+    flex-shrink: 0;
+}
+
+.nav__logo-img {
+    height: 36px;
+    width: auto;
+    display: block;
+    transition: var(--transition);
+}
+
+.nav__logo:hover .nav__logo-img {
+    opacity: 0.85;
+}
+
+.footer__logo {
+    display: inline-block;
+}
+
+.footer__logo-img {
+    height: 60px;
+    width: auto;
+    display: block;
+    transition: var(--transition);
+}
+
+.footer__logo:hover .footer__logo-img {
+    opacity: 0.85;
 }
 
 .logo-icon {

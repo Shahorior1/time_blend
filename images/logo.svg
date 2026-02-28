@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 80" fill="none">
+  <!-- Watch icon -->
+  <circle cx="36" cy="40" r="28" stroke="#ffffff" stroke-width="2" fill="none"/>
+  <circle cx="36" cy="40" r="24" stroke="#ffffff" stroke-width="0.5" fill="none" opacity="0.4"/>
+  <!-- Hour markers -->
+  <line x1="36" y1="14" x2="36" y2="18" stroke="#c8a96e" stroke-width="1.5"/>
+  <line x1="36" y1="62" x2="36" y2="66" stroke="#c8a96e" stroke-width="1.5"/>
+  <line x1="10" y1="40" x2="14" y2="40" stroke="#c8a96e" stroke-width="1.5"/>
+  <line x1="58" y1="40" x2="62" y2="40" stroke="#c8a96e" stroke-width="1.5"/>
+  <!-- Hands -->
+  <line x1="36" y1="40" x2="36" y2="22" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/>
+  <line x1="36" y1="40" x2="50" y2="32" stroke="#c8a96e" stroke-width="1.5" stroke-linecap="round"/>
+  <circle cx="36" cy="40" r="2.5" fill="#c8a96e"/>
+  <circle cx="36" cy="40" r="1" fill="#0a0a0a"/>
+  <!-- Strap hints -->
+  <rect x="28" y="4" width="16" height="8" rx="2" fill="none" stroke="#ffffff" stroke-width="0.8" opacity="0.3"/>
+  <rect x="28" y="68" width="16" height="8" rx="2" fill="none" stroke="#ffffff" stroke-width="0.8" opacity="0.3"/>
+  <!-- Brand text: TIME -->
+  <text x="82" y="35" font-family="'Playfair Display', Georgia, serif" font-size="28" font-weight="600" fill="#ffffff" letter-spacing="3">TIME</text>
+  <!-- Brand text: BLENDS -->
+  <text x="82" y="62" font-family="'Playfair Display', Georgia, serif" font-size="28" font-weight="600" fill="#c8a96e" letter-spacing="3">BLENDS</text>
+  <!-- Tagline -->
+  <text x="83" y="74" font-family="'Inter', sans-serif" font-size="7" fill="#888888" letter-spacing="4" text-transform="uppercase">LUXURY TIMEPIECES</text>
+</svg>
