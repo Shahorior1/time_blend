@@ -1,0 +1,18 @@
+{
+  "name": "Time Blends - Luxury Timepieces",
+  "short_name": "Time Blends",
+  "description": "Luxury timepieces blending timeless craftsmanship with modern elegance",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#0a0a0a",
+  "theme_color": "#c8a96e",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "./icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

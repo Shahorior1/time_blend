@@ -1032,6 +1032,15 @@ function initWishlist() {
 }
 
 // ==========================================
+// PWA / Service Worker Registration
+// ==========================================
+function registerServiceWorker() {
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('sw.js').catch(() => {});
+    }
+}
+
+// ==========================================
 // Initialize
 // ==========================================
 document.addEventListener('DOMContentLoaded', () => {
@@ -1047,4 +1056,5 @@ document.addEventListener('DOMContentLoaded', () => {
     initProductDetail();
     initCartPage();
     initWishlist();
+    registerServiceWorker();
 });
