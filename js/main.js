@@ -1071,6 +1071,98 @@ function initWishlist() {
 }
 
 // ==========================================
+// Particle System
+// ==========================================
+function initParticles() {
+    const canvas = document.getElementById('heroParticles');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+    let w, h, animId;
+
+    function resize() {
+        w = canvas.width = canvas.offsetWidth;
+        h = canvas.height = canvas.offsetHeight;
+    }
+
+    function createParticle() {
+        return {
+            x: Math.random() * w,
+            y: Math.random() * h,
+            r: Math.random() * 1.5 + 0.5,
+            dx: (Math.random() - 0.5) * 0.3,
+            dy: (Math.random() - 0.5) * 0.3,
+            alpha: Math.random() * 0.4 + 0.1,
+            pulse: Math.random() * Math.PI * 2
+        };
+    }
+
+    function init() {
+        resize();
+        particles = [];
+        const count = Math.min(80, Math.floor(w * h / 15000));
+        for (let i = 0; i < count; i++) particles.push(createParticle());
+    }
+
+    function draw() {
+        ctx.clearRect(0, 0, w, h);
+        for (const p of particles) {
+            p.x += p.dx;
+            p.y += p.dy;
+            p.pulse += 0.02;
+            const a = p.alpha * (0.6 + 0.4 * Math.sin(p.pulse));
+            if (p.x < 0) p.x = w;
+            if (p.x > w) p.x = 0;
+            if (p.y < 0) p.y = h;
+            if (p.y > h) p.y = 0;
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(200,169,110,${a})`;
+            ctx.fill();
+        }
+
+        for (let i = 0; i < particles.length; i++) {
+            for (let j = i + 1; j < particles.length; j++) {
+                const dx = particles[i].x - particles[j].x;
+                const dy = particles[i].y - particles[j].y;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+                if (dist < 120) {
+                    ctx.beginPath();
+                    ctx.moveTo(particles[i].x, particles[i].y);
+                    ctx.lineTo(particles[j].x, particles[j].y);
+                    ctx.strokeStyle = `rgba(200,169,110,${0.04 * (1 - dist / 120)})`;
+                    ctx.lineWidth = 0.5;
+                    ctx.stroke();
+                }
+            }
+        }
+        animId = requestAnimationFrame(draw);
+    }
+
+    init();
+    draw();
+    window.addEventListener('resize', init);
+}
+
+// ==========================================
+// Animated Price Counter
+// ==========================================
+function animatePrice(el) {
+    if (!el) return;
+    const target = parseInt(el.dataset.value) || 0;
+    const duration = 1200;
+    const start = performance.now();
+    function update(now) {
+        const elapsed = now - start;
+        const progress = Math.min(elapsed / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        el.textContent = Math.round(target * eased).toLocaleString();
+        if (progress < 1) requestAnimationFrame(update);
+    }
+    requestAnimationFrame(update);
+}
+
+// ==========================================
 // Hero Slider
 // ==========================================
 function initHeroSlider() {
@@ -1078,92 +1170,105 @@ function initHeroSlider() {
     if (!slider) return;
 
     const slides = slider.querySelectorAll('.hero-slide');
-    const dots = slider.querySelectorAll('.hero-slider__dot');
+    const vnavDots = slider.querySelectorAll('.vnav-dot');
     const prevBtn = document.getElementById('heroPrev');
     const nextBtn = document.getElementById('heroNext');
     const progressBar = document.getElementById('heroProgress');
+    const counterEl = document.getElementById('counterCurrent');
 
     let current = 0;
-    let autoplayInterval;
-    let progressInterval;
-    const SLIDE_DURATION = 5000;
-    const PROGRESS_STEP = 50;
+    let isTransitioning = false;
+    let autoplayTimer;
+    const DURATION = 6000;
 
     function goToSlide(index) {
-        slides[current].classList.remove('active');
-        dots[current].classList.remove('active');
+        if (isTransitioning || index === current) return;
+        isTransitioning = true;
 
+        const prev = current;
         current = (index + slides.length) % slides.length;
 
+        slides[prev].classList.add('leaving');
+        slides[prev].classList.remove('active');
+
         slides[current].classList.add('active');
-        dots[current].classList.add('active');
+
+        vnavDots[prev]?.classList.remove('active');
+        vnavDots[current]?.classList.add('active');
+
+        if (counterEl) counterEl.textContent = String(current + 1).padStart(2, '0');
+
+        const priceEl = slides[current].querySelector('.price-value');
+        animatePrice(priceEl);
 
         resetProgress();
+
+        setTimeout(() => {
+            slides[prev].classList.remove('leaving');
+            isTransitioning = false;
+        }, 1000);
     }
 
-    function nextSlide() {
-        goToSlide(current + 1);
-    }
-
-    function prevSlide() {
-        goToSlide(current - 1);
-    }
+    function next() { goToSlide(current + 1); }
+    function prev() { goToSlide(current - 1); }
 
     function resetProgress() {
-        if (progressBar) {
-            progressBar.style.transition = 'none';
-            progressBar.style.width = '0%';
-            void progressBar.offsetWidth;
-            progressBar.style.transition = `width ${SLIDE_DURATION}ms linear`;
-            progressBar.style.width = '100%';
-        }
+        if (!progressBar) return;
+        progressBar.style.transition = 'none';
+        progressBar.style.width = '0%';
+        void progressBar.offsetWidth;
+        progressBar.style.transition = `width ${DURATION}ms linear`;
+        progressBar.style.width = '100%';
     }
 
     function startAutoplay() {
         stopAutoplay();
         resetProgress();
-        autoplayInterval = setInterval(nextSlide, SLIDE_DURATION);
+        autoplayTimer = setInterval(next, DURATION);
     }
+    function stopAutoplay() { clearInterval(autoplayTimer); }
 
-    function stopAutoplay() {
-        clearInterval(autoplayInterval);
-    }
+    nextBtn?.addEventListener('click', () => { next(); startAutoplay(); });
+    prevBtn?.addEventListener('click', () => { prev(); startAutoplay(); });
 
-    nextBtn?.addEventListener('click', () => { nextSlide(); startAutoplay(); });
-    prevBtn?.addEventListener('click', () => { prevSlide(); startAutoplay(); });
-
-    dots.forEach(dot => {
+    vnavDots.forEach(dot => {
         dot.addEventListener('click', () => {
-            const idx = parseInt(dot.dataset.slide);
-            if (idx !== current) {
-                goToSlide(idx);
-                startAutoplay();
-            }
+            goToSlide(parseInt(dot.dataset.slide));
+            startAutoplay();
         });
     });
 
-    // Touch/swipe support
-    let touchStartX = 0;
-    let touchEndX = 0;
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowRight' || e.key === 'ArrowDown') { next(); startAutoplay(); }
+        if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') { prev(); startAutoplay(); }
+    });
 
-    slider.addEventListener('touchstart', (e) => {
-        touchStartX = e.changedTouches[0].screenX;
-        stopAutoplay();
-    }, { passive: true });
-
-    slider.addEventListener('touchend', (e) => {
-        touchEndX = e.changedTouches[0].screenX;
-        const diff = touchStartX - touchEndX;
-        if (Math.abs(diff) > 50) {
-            if (diff > 0) nextSlide();
-            else prevSlide();
-        }
+    // Touch/swipe
+    let tx = 0;
+    slider.addEventListener('touchstart', e => { tx = e.changedTouches[0].screenX; stopAutoplay(); }, { passive: true });
+    slider.addEventListener('touchend', e => {
+        const diff = tx - e.changedTouches[0].screenX;
+        if (Math.abs(diff) > 50) { diff > 0 ? next() : prev(); }
         startAutoplay();
     }, { passive: true });
 
-    // Pause on hover
+    // Mouse wheel
+    let wheelCooldown = false;
+    slider.addEventListener('wheel', (e) => {
+        if (wheelCooldown) return;
+        wheelCooldown = true;
+        if (e.deltaY > 0) next(); else prev();
+        startAutoplay();
+        setTimeout(() => wheelCooldown = false, 1200);
+    }, { passive: true });
+
     slider.addEventListener('mouseenter', stopAutoplay);
     slider.addEventListener('mouseleave', startAutoplay);
+
+    // Animate first slide price on load
+    const firstPrice = slides[0]?.querySelector('.price-value');
+    animatePrice(firstPrice);
 
     startAutoplay();
 }
@@ -1284,6 +1389,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initProductDetail();
     initCartPage();
     initWishlist();
+    initParticles();
     initHeroSlider();
     initProductsCarousel();
 });
