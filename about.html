@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Time Blends</title>
+    <meta name="description" content="Learn about Time Blends - our story, our values, and our passion for curating the finest luxury timepieces.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Announcement Bar -->
+    <div class="announcement-bar">
+        <p>Free Shipping on Orders Over $500 &mdash; <a href="shop.html">Shop Now</a></p>
+    </div>
+
+    <!-- Navigation -->
+    <header class="header" id="header">
+        <nav class="nav container">
+            <a href="index.html" class="nav__logo">
+                <span class="logo-icon">&#9201;</span>
+                <span class="logo-text">Time<span class="logo-accent">Blends</span></span>
+            </a>
+            <ul class="nav__menu" id="navMenu">
+                <li><a href="index.html" class="nav__link">Home</a></li>
+                <li><a href="shop.html" class="nav__link">Shop</a></li>
+                <li><a href="about.html" class="nav__link active">About</a></li>
+                <li><a href="contact.html" class="nav__link">Contact</a></li>
+            </ul>
+            <div class="nav__actions">
+                <button class="nav__action-btn search-toggle" aria-label="Search">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+                </button>
+                <a href="cart.html" class="nav__action-btn cart-btn" aria-label="Cart">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+                    <span class="cart-count" id="cartCount">0</span>
+                </a>
+                <button class="nav__toggle" id="navToggle" aria-label="Menu">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Search Overlay -->
+    <div class="search-overlay" id="searchOverlay">
+        <div class="search-overlay__inner">
+            <button class="search-overlay__close" id="searchClose">&times;</button>
+            <input type="text" class="search-overlay__input" placeholder="Search for watches..." id="searchInput">
+        </div>
+    </div>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <div class="page-header__breadcrumb">
+                <a href="index.html">Home</a>
+                <span class="sep">/</span>
+                <span>About</span>
+            </div>
+            <h1 class="page-header__title">Our <span class="text-accent">Story</span></h1>
+            <p class="page-header__desc">A passion for horology, a commitment to excellence, and a love for timeless design.</p>
+        </div>
+    </section>
+
+    <!-- Story Section -->
+    <section class="about-story">
+        <div class="container">
+            <div class="about-story__grid">
+                <div class="about-image-placeholder">
+                    <svg viewBox="0 0 500 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="500" height="400" fill="#111"/>
+                        <circle cx="250" cy="180" r="100" fill="none" stroke="#c8a96e" stroke-width="1" opacity="0.4"/>
+                        <circle cx="250" cy="180" r="70" fill="none" stroke="#c8a96e" stroke-width="0.5" opacity="0.3"/>
+                        <line x1="250" y1="180" x2="250" y2="110" stroke="#c8a96e" stroke-width="2" stroke-linecap="round"/>
+                        <line x1="250" y1="180" x2="300" y2="160" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/>
+                        <circle cx="250" cy="180" r="4" fill="#c8a96e"/>
+                        <text x="250" y="320" text-anchor="middle" fill="#c8a96e" font-size="14" font-family="serif" letter-spacing="6">THE WORKSHOP</text>
+                        <text x="250" y="345" text-anchor="middle" fill="#666" font-size="9" font-family="sans-serif" letter-spacing="3">WHERE CRAFT MEETS TIME</text>
+                    </svg>
+                </div>
+                <div class="about-story__content">
+                    <p class="section__subtitle">Founded in 2020</p>
+                    <h3>A Journey Through <span class="text-accent">Time</span></h3>
+                    <p>Time Blends was born from a deep passion for horology and a desire to make exceptional timepieces accessible to watch enthusiasts everywhere. What started as a small collection curated from the finest watchmakers has grown into a trusted destination for those who appreciate the art of timekeeping.</p>
+                    <p>Our founder's lifelong fascination with mechanical movements and elegant design inspired a mission: to blend the rich traditions of watchmaking with contemporary aesthetics, creating a collection that speaks to both heritage and innovation.</p>
+                    <p>Every watch in our collection is carefully selected, authenticated, and inspected to ensure it meets our exacting standards. We believe that a great watch is more than a timekeeping device &mdash; it's a companion for life's most important moments.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission Section -->
+    <section class="about-story" style="padding-top: 0;">
+        <div class="container">
+            <div class="about-story__grid" style="direction: rtl;">
+                <div class="about-image-placeholder" style="direction: ltr;">
+                    <svg viewBox="0 0 500 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="500" height="400" fill="#0d0d0d"/>
+                        <rect x="100" y="80" width="300" height="240" rx="8" fill="none" stroke="#c8a96e" stroke-width="0.5" opacity="0.3"/>
+                        <rect x="120" y="100" width="260" height="200" rx="4" fill="none" stroke="#c8a96e" stroke-width="0.5" opacity="0.2"/>
+                        <circle cx="170" cy="180" r="40" fill="none" stroke="#c8a96e" stroke-width="1"/>
+                        <circle cx="250" cy="200" r="50" fill="none" stroke="#c8a96e" stroke-width="1"/>
+                        <circle cx="330" cy="180" r="40" fill="none" stroke="#c8a96e" stroke-width="1"/>
+                        <text x="250" y="330" text-anchor="middle" fill="#c8a96e" font-size="14" font-family="serif" letter-spacing="6">OUR MISSION</text>
+                        <text x="250" y="355" text-anchor="middle" fill="#666" font-size="9" font-family="sans-serif" letter-spacing="3">EXCELLENCE IN EVERY DETAIL</text>
+                    </svg>
+                </div>
+                <div class="about-story__content" style="direction: ltr;">
+                    <p class="section__subtitle">Our Mission</p>
+                    <h3>Curating <span class="text-accent">Excellence</span></h3>
+                    <p>At Time Blends, our mission is simple: to connect people with timepieces that inspire. We believe that the right watch can transform an outfit, mark a milestone, or become a treasured heirloom passed down through generations.</p>
+                    <p>We work directly with renowned watchmakers and authorized dealers to ensure authenticity and quality. Our team of horological experts personally evaluates each piece, examining everything from movement precision to case finishing.</p>
+                    <p>Whether you're purchasing your first luxury watch or adding to an existing collection, we're here to guide you with expert knowledge and genuine passion for the craft.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Values -->
+    <section class="values-section">
+        <div class="container">
+            <div class="section__header">
+                <p class="section__subtitle">What We Stand For</p>
+                <h2 class="section__title">Our Core <span class="text-accent">Values</span></h2>
+            </div>
+            <div class="values-grid">
+                <div class="value-card">
+                    <div class="value-card__icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#c8a96e" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    </div>
+                    <h3 class="value-card__title">Authenticity</h3>
+                    <p class="value-card__text">Every timepiece is verified and certified genuine. We guarantee 100% authenticity on every watch we sell, backed by our comprehensive authentication process.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-card__icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#c8a96e" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                    </div>
+                    <h3 class="value-card__title">Craftsmanship</h3>
+                    <p class="value-card__text">We celebrate the art of watchmaking by curating pieces that represent the highest standards of mechanical precision, finishing, and design excellence.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-card__icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#c8a96e" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                    </div>
+                    <h3 class="value-card__title">Customer First</h3>
+                    <p class="value-card__text">Your satisfaction is our priority. From personalized recommendations to after-sale support, we ensure every interaction exceeds your expectations.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-card__icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#c8a96e" stroke-width="1.5"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                    </div>
+                    <h3 class="value-card__title">Heritage</h3>
+                    <p class="value-card__text">We honor watchmaking traditions while embracing innovation. Our collection bridges the past and future of horology with carefully curated timepieces.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-card__icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#c8a96e" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+                    </div>
+                    <h3 class="value-card__title">Transparency</h3>
+                    <p class="value-card__text">Honest pricing, detailed specifications, and clear policies. We believe trust is built through transparency in every aspect of our business.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-card__icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#c8a96e" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                    </div>
+                    <h3 class="value-card__title">Community</h3>
+                    <p class="value-card__text">We're more than a store &mdash; we're a community of watch enthusiasts. Join us for events, educational content, and conversations about the world of horology.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team -->
+    <section class="team-section">
+        <div class="container">
+            <div class="section__header">
+                <p class="section__subtitle">The People Behind the Brand</p>
+                <h2 class="section__title">Meet Our <span class="text-accent">Team</span></h2>
+            </div>
+            <div class="team-grid">
+                <div class="team-card">
+                    <div class="team-card__avatar">AR</div>
+                    <h4 class="team-card__name">Alex Reynolds</h4>
+                    <p class="team-card__role">Founder & CEO</p>
+                </div>
+                <div class="team-card">
+                    <div class="team-card__avatar">SN</div>
+                    <h4 class="team-card__name">Sofia Nakamura</h4>
+                    <p class="team-card__role">Head of Curation</p>
+                </div>
+                <div class="team-card">
+                    <div class="team-card__avatar">DM</div>
+                    <h4 class="team-card__name">David Mitchell</h4>
+                    <p class="team-card__role">Master Horologist</p>
+                </div>
+                <div class="team-card">
+                    <div class="team-card__avatar">EP</div>
+                    <h4 class="team-card__name">Emma Park</h4>
+                    <p class="team-card__role">Customer Experience</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="newsletter">
+        <div class="container">
+            <div class="newsletter__inner">
+                <div class="newsletter__content">
+                    <h2 class="newsletter__title">Stay in the Loop</h2>
+                    <p class="newsletter__text">Subscribe for exclusive drops, early access, and watch care tips.</p>
+                </div>
+                <form class="newsletter__form" id="newsletterForm">
+                    <input type="email" placeholder="Enter your email" required class="newsletter__input">
+                    <button type="submit" class="btn btn--primary">Subscribe</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__grid">
+                <div class="footer__brand">
+                    <a href="index.html" class="nav__logo">
+                        <span class="logo-icon">&#9201;</span>
+                        <span class="logo-text">Time<span class="logo-accent">Blends</span></span>
+                    </a>
+                    <p class="footer__tagline">Curating exceptional timepieces that blend timeless craftsmanship with modern elegance since 2020.</p>
+                    <div class="footer__social">
+                        <a href="#" aria-label="Facebook"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+                        <a href="#" aria-label="Instagram"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+                        <a href="#" aria-label="Twitter"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg></a>
+                    </div>
+                </div>
+                <div class="footer__links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="shop.html">Shop All</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="#">Size Guide</a></li>
+                    </ul>
+                </div>
+                <div class="footer__links">
+                    <h4>Collections</h4>
+                    <ul>
+                        <li><a href="shop.html?collection=classic">Classic</a></li>
+                        <li><a href="shop.html?collection=sport">Sport</a></li>
+                        <li><a href="shop.html?collection=luxury">Luxury</a></li>
+                        <li><a href="shop.html?collection=vintage">Vintage</a></li>
+                    </ul>
+                </div>
+                <div class="footer__links">
+                    <h4>Customer Care</h4>
+                    <ul>
+                        <li><a href="#">Shipping & Returns</a></li>
+                        <li><a href="#">Warranty</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer__bottom">
+                <p>&copy; 2026 Time Blends. All rights reserved.</p>
+                <div class="footer__payments">
+                    <span>Visa</span>
+                    <span>Mastercard</span>
+                    <span>PayPal</span>
+                    <span>Amex</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <span class="toast__message" id="toastMessage"></span>
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
