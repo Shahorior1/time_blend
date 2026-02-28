@@ -505,15 +505,14 @@ ul { list-style: none; }
 }
 .price-currency { font-size: 1.4rem; vertical-align: top; margin-right: 2px; }
 
-/* Buttons (below watch) */
+/* Buttons (left side, after price) */
 .hero-slide__buttons {
-    display: flex; gap: 14px; flex-wrap: wrap; justify-content: center;
-    opacity: 0; transform: translateY(20px);
-    position: relative; z-index: 2;
+    display: flex; gap: 14px; flex-wrap: wrap;
+    opacity: 0; transform: translateY(15px);
 }
 .hero-slide.active .hero-slide__buttons {
     opacity: 1; transform: translateY(0);
-    transition: all 0.6s ease 0.9s;
+    transition: all 0.5s ease 0.85s;
 }
 .btn--glow {
     position: relative; overflow: hidden;
@@ -528,8 +527,8 @@ ul { list-style: none; }
 
 /* Watch Visual */
 .hero-slide__visual {
-    display: flex; flex-direction: column; justify-content: center; align-items: center;
-    position: relative; perspective: 800px; gap: 24px;
+    display: flex; justify-content: center; align-items: center;
+    position: relative; perspective: 800px;
 }
 .hero-slide__glow {
     position: absolute; width: 350px; height: 350px; border-radius: 50%;
