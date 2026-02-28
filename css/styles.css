@@ -1546,6 +1546,10 @@ ul { list-style: none; }
 }
 
 /* Hero-style product detail (reference design) */
+.product-detail--home {
+    padding-top: 120px;
+}
+
 .product-detail--hero .product-detail__hero {
     display: flex;
     flex-direction: column;

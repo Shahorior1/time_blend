@@ -753,14 +753,17 @@ function initShopPage() {
 // Product Detail Page
 // ==========================================
 function initProductDetail() {
-    const infoEl = document.querySelector('.product-detail__info');
-    const mainImageEl = document.querySelector('.product-detail__main-image');
-    const actionsWrap = document.querySelector('.product-detail__actions-wrap');
+    const infoEl = document.querySelector('.product-detail__info') || document.getElementById('homeProductInfo');
+    const mainImageEl = document.querySelector('.product-detail__main-image') || document.getElementById('homeProductImage');
+    const actionsWrap = document.querySelector('.product-detail__actions-wrap') || document.getElementById('homeProductActions');
     const expandEl = document.getElementById('productDetailExpand');
     if (!infoEl || !mainImageEl) return;
 
     const params = new URLSearchParams(window.location.search);
-    const productId = parseInt(params.get('id'));
+    let productId = parseInt(params.get('id'));
+    if (!productId && (document.getElementById('homeProductInfo') || window.location.pathname.endsWith('index.html') || window.location.pathname === '/' || window.location.pathname.endsWith('/'))) {
+        productId = 1;
+    }
     const product = PRODUCTS.find(p => p.id === productId);
 
     if (!product) {
