@@ -754,7 +754,10 @@ function initShopPage() {
 // ==========================================
 function initProductDetail() {
     const infoEl = document.querySelector('.product-detail__info');
-    if (!infoEl) return;
+    const mainImageEl = document.querySelector('.product-detail__main-image');
+    const actionsWrap = document.querySelector('.product-detail__actions-wrap');
+    const expandEl = document.getElementById('productDetailExpand');
+    if (!infoEl || !mainImageEl) return;
 
     const params = new URLSearchParams(window.location.search);
     const productId = parseInt(params.get('id'));
@@ -767,135 +770,111 @@ function initProductDetail() {
 
     document.title = `${product.name} - Time Blends`;
 
-    const breadcrumbName = document.getElementById('productBreadcrumb');
-    if (breadcrumbName) breadcrumbName.textContent = product.name;
+    // Feature pills from specs (Movement, Crystal, Case Size)
+    const movement = product.specs['Movement'] ? product.specs['Movement'].split(/[(\s]/)[0].toUpperCase() : '';
+    const crystal = product.specs['Crystal'] ? product.specs['Crystal'].split(/[(\s]/)[0].toUpperCase() : '';
+    const caseSize = product.specs['Case Size'] || '';
+    const featurePills = [movement, crystal, caseSize].filter(Boolean);
 
-    // Main image
-    const mainImage = document.querySelector('.product-detail__main-image');
-    if (mainImage) {
-        mainImage.innerHTML = createWatchSVG(product.accentColor, 'large');
-    }
-
-    // Thumbnails
-    const thumbs = document.querySelector('.product-detail__thumbnails');
-    if (thumbs) {
-        thumbs.innerHTML = [1, 2, 3, 4].map((_, i) => `
-            <div class="product-detail__thumb ${i === 0 ? 'active' : ''}">
-                ${createWatchSVG(product.accentColor, 'small')}
+    mainImageEl.innerHTML = `
+        <div class="product-detail__watch-visual" style="--watch-accent: ${product.accentColor}">
+            <div class="product-detail__concentric"></div>
+            <div class="product-detail__watch-svg" id="productDetailWatchSvg">
+                ${createWatchSVG(product.accentColor, 'large')}
             </div>
-        `).join('');
-    }
+        </div>
+    `;
 
     infoEl.innerHTML = `
-        <p class="product-detail__category">${product.category}</p>
-        <h1 class="product-detail__name">${product.name}</h1>
-        <div class="product-detail__rating">
-            <span class="stars">★★★★★</span>
-            <span class="count">${product.rating} (${product.reviews} reviews)</span>
+        <p class="product-detail__category product-detail__category--line">
+            <span class="product-detail__category-line"></span>
+            ${product.category.toUpperCase()}
+        </p>
+        <h1 class="product-detail__name product-detail__name--hero">${product.name}</h1>
+        <p class="product-detail__desc product-detail__desc--hero">${product.desc}. The essence of timeless sophistication.</p>
+        <div class="product-detail__pills">
+            ${featurePills.map(tag => `<span class="product-detail__pill">${tag}</span>`).join('')}
         </div>
-        <p class="product-detail__price">$${product.price.toLocaleString()}${product.oldPrice ? ` <span class="product-card__price--old">$${product.oldPrice.toLocaleString()}</span>` : ''}</p>
-        <p class="product-detail__desc">${product.fullDesc}</p>
-
-        <div class="product-detail__options">
-            <span class="option-label">Watch Color</span>
+        <div class="product-detail__price-wrap">
+            <span class="product-detail__price-icon">$</span>
+            <span class="product-detail__price product-detail__price--hero">${product.price.toLocaleString()}</span>
+            ${product.oldPrice ? `<span class="product-detail__price--old">$${product.oldPrice.toLocaleString()}</span>` : ''}
+        </div>
+        <div class="product-detail__options product-detail__options--inline">
+            <span class="option-label">Color:</span>
             <div class="color-options">
                 ${(product.colors || [{ name: 'Default', hex: product.accentColor }]).map((c, i) => `
                     <button class="color-option ${i === 0 ? 'active' : ''}" data-color="${c.hex}" title="${c.name}" style="--swatch: ${c.hex};"></button>
                 `).join('')}
             </div>
         </div>
-
-        <div class="product-detail__options">
-            <span class="option-label">Strap Type</span>
-            <div class="strap-options">
-                ${product.straps.map((s, i) => `<button class="strap-option ${i === 0 ? 'active' : ''}">${s}</button>`).join('')}
-            </div>
-        </div>
-
-        <div class="product-detail__quantity">
-            <span class="option-label" style="margin-bottom: 0;">Quantity</span>
+        <div class="product-detail__quantity product-detail__quantity--compact">
+            <span class="option-label">Qty</span>
             <div class="qty-control">
                 <button class="qty-btn" id="qtyMinus">−</button>
                 <input type="number" class="qty-value" id="qtyValue" value="1" min="1" max="10" readonly>
                 <button class="qty-btn" id="qtyPlus">+</button>
             </div>
         </div>
+    `;
 
-        <div class="product-detail__actions">
-            <button class="btn btn--outline" id="addToCartDetail">Add to Cart</button>
-            <button class="btn btn--primary" id="buyNowDetail" data-product-id="${product.id}">Buy Now</button>
-            <button class="btn btn--outline wishlist-btn">
+    if (actionsWrap) {
+        actionsWrap.innerHTML = `
+            <a href="shop.html" class="btn btn--shop-now">Shop Now</a>
+            <button class="btn btn--add-cart" id="addToCartDetail">Add to Cart</button>
+            <button class="btn btn--primary btn--buy-now" id="buyNowDetail" data-product-id="${product.id}">Buy Now</button>
+            <button class="btn btn--outline wishlist-btn" style="margin-top: 8px;">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 8px;"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
                 Wishlist
             </button>
-        </div>
+        `;
+    }
 
-        <div class="product-detail__meta">
-            <div class="meta-item"><span class="label">SKU:</span> TB-${String(product.id).padStart(4, '0')}</div>
-            <div class="meta-item"><span class="label">Category:</span> ${product.category}</div>
-            <div class="meta-item"><span class="label">Availability:</span> <span style="color: #4caf50;">In Stock</span></div>
-        </div>
-
-        <div class="product-detail__specs">
-            <h3 class="specs-title">Specifications</h3>
-            <div class="specs-grid">
-                ${Object.entries(product.specs).map(([key, val]) => `
-                    <div class="spec-item">
-                        <span class="spec-label">${key}</span>
-                        <span>${val}</span>
-                    </div>
-                `).join('')}
+    if (expandEl) {
+        expandEl.innerHTML = `
+            <div class="product-detail__specs">
+                <h3 class="specs-title">Specifications</h3>
+                <div class="specs-grid">
+                    ${Object.entries(product.specs).map(([key, val]) => `
+                        <div class="spec-item">
+                            <span class="spec-label">${key}</span>
+                            <span>${val}</span>
+                        </div>
+                    `).join('')}
+                </div>
             </div>
-        </div>
-    `;
+        `;
+    }
 
     // Color option toggle - updates watch display
-    const mainImageEl = document.querySelector('.product-detail__main-image');
-    const thumbsEl = document.querySelector('.product-detail__thumbnails');
+    const watchSvgEl = document.getElementById('productDetailWatchSvg');
     infoEl.querySelectorAll('.color-option').forEach(btn => {
         btn.addEventListener('click', () => {
             infoEl.querySelectorAll('.color-option').forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
             const color = btn.dataset.color;
-            if (mainImageEl) mainImageEl.innerHTML = createWatchSVG(color, 'large');
-            if (thumbsEl) {
-                thumbsEl.innerHTML = [1, 2, 3, 4].map((_, i) => `
-                    <div class="product-detail__thumb ${i === 0 ? 'active' : ''}">
-                        ${createWatchSVG(color, 'small')}
-                    </div>
-                `).join('');
-            }
-        });
-    });
-
-    // Strap option toggle
-    infoEl.querySelectorAll('.strap-option').forEach(btn => {
-        btn.addEventListener('click', () => {
-            infoEl.querySelectorAll('.strap-option').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
+            if (watchSvgEl) watchSvgEl.innerHTML = createWatchSVG(color, 'large');
         });
     });
 
     // Quantity controls
     const qtyValue = document.getElementById('qtyValue');
     document.getElementById('qtyMinus')?.addEventListener('click', () => {
-        const v = parseInt(qtyValue.value);
-        if (v > 1) qtyValue.value = v - 1;
+        const v = parseInt(qtyValue?.value || 1);
+        if (qtyValue && v > 1) qtyValue.value = v - 1;
     });
     document.getElementById('qtyPlus')?.addEventListener('click', () => {
-        const v = parseInt(qtyValue.value);
-        if (v < 10) qtyValue.value = v + 1;
+        const v = parseInt(qtyValue?.value || 1);
+        if (qtyValue && v < 10) qtyValue.value = v + 1;
     });
 
-    // Add to cart
     document.getElementById('addToCartDetail')?.addEventListener('click', () => {
-        const qty = parseInt(qtyValue.value);
+        const qty = parseInt(qtyValue?.value || 1);
         cart.add(product.id, qty);
     });
 
-    // Buy now
     document.getElementById('buyNowDetail')?.addEventListener('click', () => {
-        const qty = parseInt(qtyValue.value);
+        const qty = parseInt(qtyValue?.value || 1);
         cart.addAndCheckout(product.id, qty);
     });
 }
