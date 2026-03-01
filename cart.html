@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shopping Cart - Time Blends</title>
-    <meta name="description" content="Review your shopping cart and proceed to checkout at Time Blends.">
+    <title>Shopping Cart - Time Blend</title>
+    <meta name="description" content="Review your shopping cart and proceed to checkout at Time Blend.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="images/logo-nav.svg">
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
@@ -20,8 +21,7 @@
     <header class="header" id="header">
         <nav class="nav container">
             <a href="index.html" class="nav__logo">
-                <span class="logo-icon">&#9201;</span>
-                <span class="logo-text">Time<span class="logo-accent">Blends</span></span>
+                <img src="images/logo-nav.svg" alt="Time Blend" class="nav__logo-img">
             </a>
             <ul class="nav__menu" id="navMenu">
                 <li><a href="index.html" class="nav__link">Home</a></li>
@@ -105,9 +105,8 @@
         <div class="container">
             <div class="footer__grid">
                 <div class="footer__brand">
-                    <a href="index.html" class="nav__logo">
-                        <span class="logo-icon">&#9201;</span>
-                        <span class="logo-text">Time<span class="logo-accent">Blends</span></span>
+                    <a href="index.html" class="nav__logo footer__logo">
+                        <img src="images/logo.svg" alt="Time Blend" class="footer__logo-img">
                     </a>
                     <p class="footer__tagline">Curating exceptional timepieces that blend timeless craftsmanship with modern elegance since 2020.</p>
                     <div class="footer__social">
@@ -132,6 +131,7 @@
                         <li><a href="shop.html?collection=sport">Sport</a></li>
                         <li><a href="shop.html?collection=luxury">Luxury</a></li>
                         <li><a href="shop.html?collection=vintage">Vintage</a></li>
+                        <li><a href="shop.html?collection=smartwatch">Smart Watch</a></li>
                     </ul>
                 </div>
                 <div class="footer__links">
@@ -145,7 +145,7 @@
                 </div>
             </div>
             <div class="footer__bottom">
-                <p>&copy; 2026 Time Blends. All rights reserved.</p>
+                <p>&copy; 2026 Time Blend. All rights reserved.</p>
                 <div class="footer__payments">
                     <span>Visa</span>
                     <span>Mastercard</span>
@@ -160,6 +160,12 @@
     <div class="toast" id="toast">
         <span class="toast__message" id="toastMessage"></span>
     </div>
+
+    <!-- WhatsApp Button -->
+    <a href="https://wa.me/8801869745376?text=Hello%20Time%20Blend!%20I%27m%20interested%20in%20your%20watches." class="whatsapp-btn" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+        <svg viewBox="0 0 32 32" fill="#fff" width="28" height="28"><path d="M16.004 0C7.165 0 .003 7.16.003 15.997c0 2.82.737 5.573 2.138 7.998L.012 32l8.23-2.157A15.95 15.95 0 0 0 16.004 32C24.84 32 32 24.838 32 15.997 32 7.16 24.84 0 16.004 0zm0 29.393a13.36 13.36 0 0 1-6.81-1.865l-.488-.29-5.065 1.328 1.35-4.934-.317-.505A13.34 13.34 0 0 1 2.61 15.997c0-7.39 6.01-13.4 13.394-13.4 7.387 0 13.398 6.01 13.398 13.4 0 7.392-6.01 13.396-13.398 13.396zm7.346-10.03c-.402-.202-2.38-1.175-2.75-1.31-.37-.132-.64-.2-.91.202-.268.4-1.04 1.31-1.276 1.578-.235.27-.47.302-.872.1-.402-.2-1.698-.625-3.234-1.994-1.195-1.065-2-2.38-2.236-2.782-.235-.402-.025-.62.177-.82.18-.18.402-.47.603-.703.2-.235.268-.402.402-.67.134-.268.067-.503-.034-.703-.1-.2-.91-2.194-1.247-3.004-.328-.79-.66-.683-.91-.696l-.774-.013c-.268 0-.704.1-1.073.503-.37.4-1.41 1.375-1.41 3.354 0 1.98 1.444 3.892 1.645 4.16.2.27 2.84 4.332 6.88 6.076.962.415 1.712.663 2.298.848.965.307 1.843.264 2.537.16.774-.115 2.38-.973 2.717-1.912.335-.94.335-1.745.235-1.912-.1-.168-.37-.268-.774-.47z"/></svg>
+        <span class="whatsapp-btn__tooltip">Chat with us</span>
+    </a>
 
     <script src="js/main.js"></script>
 </body>
