@@ -600,6 +600,67 @@ const PRODUCTS = [
         reviews: 47,
         straps: ['Alligator', 'Rose Gold Bracelet'],
         accentColor: '#b76e79'
+    },
+    {
+        id: 23,
+        name: 'Raw Steel Industrial',
+        category: 'Sport Collection',
+        collection: 'sport',
+        price: 980,
+        oldPrice: null,
+        badge: 'New',
+        badgeType: 'new',
+        desc: '41mm automatic, raw brushed steel',
+        fullDesc: 'The Raw Steel Industrial embraces unfinished beauty. Its case and bracelet feature a distinctive raw, bead-blasted finish that reveals the natural character of stainless steel. No polish, no plating—just honest, industrial aesthetics. The automatic movement and 100m water resistance make it as capable as it is striking.',
+        specs: {
+            'Case Size': '41mm',
+            'Movement': 'Automatic',
+            'Crystal': 'Sapphire',
+            'Water Resistance': '100m',
+            'Case Material': 'Raw Brushed Steel',
+            'Strap': 'Steel Bracelet',
+            'Power Reserve': '42 hours',
+            'Dial Color': 'Raw Grey'
+        },
+        rating: 4.7,
+        reviews: 38,
+        straps: ['Steel', 'NATO', 'Leather'],
+        accentColor: '#6b6b6b',
+        colors: [
+            { name: 'Raw Steel', hex: '#6b6b6b' },
+            { name: 'Charcoal', hex: '#4a4a4a' },
+            { name: 'Gunmetal', hex: '#2c2c2c' }
+        ]
+    },
+    {
+        id: 24,
+        name: 'Celestial Navigator',
+        category: 'Classic Collection',
+        collection: 'classic',
+        price: 1580,
+        oldPrice: null,
+        badge: null,
+        desc: '40mm automatic, moonphase display',
+        fullDesc: 'The Celestial Navigator brings the night sky to your wrist. A refined moonphase complication tracks the lunar cycle with poetic precision, while the silver-toned dial evokes starlit elegance. The automatic movement and crocodile leather strap make it equally suited for boardroom and ballroom.',
+        specs: {
+            'Case Size': '40mm',
+            'Movement': 'Automatic w/ Moonphase',
+            'Crystal': 'Sapphire',
+            'Water Resistance': '50m',
+            'Case Material': 'Polished Steel',
+            'Strap': 'Crocodile Leather',
+            'Power Reserve': '45 hours',
+            'Dial Color': 'Starlight Silver'
+        },
+        rating: 4.9,
+        reviews: 61,
+        straps: ['Crocodile', 'Steel Bracelet', 'Suede'],
+        accentColor: '#a8b5c4',
+        colors: [
+            { name: 'Starlight Silver', hex: '#a8b5c4' },
+            { name: 'Midnight Blue', hex: '#1e3a5f' },
+            { name: 'Pearl White', hex: '#f0f0f0' }
+        ]
     }
 ];
 
