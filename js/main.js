@@ -1016,14 +1016,16 @@ function initShopPage() {
     if (!grid) return;
 
     const params = new URLSearchParams(window.location.search);
-    const collectionFilter = params.get('collection');
+    let collectionFilter = params.get('collection') || '';
     const searchQuery = params.get('search')?.toLowerCase();
 
     let filtered = [...PRODUCTS];
 
     if (collectionFilter) {
         filtered = filtered.filter(p => p.collection === collectionFilter);
-        const checkbox = document.querySelector(`input[value="${collectionFilter}"]`);
+        const toggleBtn = document.querySelector(`.category-toggle-btn[data-collection="${collectionFilter}"]`);
+        const checkbox = document.querySelector(`input[type="checkbox"][value="${collectionFilter}"]`);
+        if (toggleBtn) { document.querySelectorAll('.category-toggle-btn').forEach(b => b.classList.remove('active')); toggleBtn.classList.add('active'); }
         if (checkbox) checkbox.checked = true;
     }
 
@@ -1034,6 +1036,25 @@ function initShopPage() {
             p.desc.toLowerCase().includes(searchQuery)
         );
     }
+
+    // Category toggle bar
+    const collectionFiltersEl = document.getElementById('collectionFilters');
+    document.querySelectorAll('.category-toggle-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('.category-toggle-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            collectionFilter = btn.dataset.collection || '';
+            if (collectionFiltersEl) {
+                collectionFiltersEl.querySelectorAll('input[type="checkbox"]').forEach(cb => { cb.checked = false; });
+                const checkbox = collectionFiltersEl.querySelector(`input[type="checkbox"][value="${collectionFilter}"]`);
+                if (checkbox) checkbox.checked = true;
+            }
+            let result = collectionFilter ? PRODUCTS.filter(p => p.collection === collectionFilter) : [...PRODUCTS];
+            if (searchQuery) result = result.filter(p => p.name.toLowerCase().includes(searchQuery) || p.category.toLowerCase().includes(searchQuery) || p.desc.toLowerCase().includes(searchQuery));
+            filtered = result;
+            renderProducts(filtered);
+        });
+    });
 
     let currentDisplayedProducts = [];
     function renderProducts(products) {
@@ -1120,11 +1141,18 @@ function initShopPage() {
 
     renderProducts(filtered);
 
-    // Filter checkboxes
-    document.querySelectorAll('.filter-option input[type="checkbox"]').forEach(cb => {
-        cb.addEventListener('change', () => {
-            const checked = Array.from(document.querySelectorAll('.filter-option input[type="checkbox"]:checked'))
-                .map(el => el.value);
+    // Filter checkboxes - sync with toggle bar
+    if (collectionFiltersEl) {
+        collectionFiltersEl.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+            cb.addEventListener('change', () => {
+                const checked = Array.from(collectionFiltersEl.querySelectorAll('input[type="checkbox"]:checked'))
+                    .map(el => el.value);
+
+            document.querySelectorAll('.category-toggle-btn').forEach(b => b.classList.remove('active'));
+            const toggleBtn = checked.length === 1
+                ? document.querySelector(`.category-toggle-btn[data-collection="${checked[0]}"]`)
+                : document.querySelector('.category-toggle-btn[data-collection=""]');
+            if (toggleBtn) toggleBtn.classList.add('active');
 
             let result = [...PRODUCTS];
             if (checked.length > 0) {
@@ -1136,9 +1164,11 @@ function initShopPage() {
                     p.category.toLowerCase().includes(searchQuery)
                 );
             }
+            filtered = result;
             renderProducts(result);
         });
-    });
+        });
+    }
 
     // Sort
     const sortSelect = document.querySelector('.shop-toolbar__sort select');
@@ -1156,14 +1186,14 @@ function initShopPage() {
         });
     }
 
-    // Price range
+    // Price range (applies to current collection filter)
     const priceRange = document.querySelector('.price-range');
     const priceMax = document.getElementById('priceMax');
     if (priceRange) {
         priceRange.addEventListener('input', () => {
             const max = parseInt(priceRange.value);
             if (priceMax) priceMax.textContent = `$${max.toLocaleString()}`;
-            const result = PRODUCTS.filter(p => p.price <= max);
+            const result = filtered.filter(p => p.price <= max);
             renderProducts(result);
         });
     }

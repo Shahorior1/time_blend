@@ -1974,6 +1974,39 @@ ul { list-style: none; }
     border-color: var(--accent);
 }
 
+/* Category Toggle Bar */
+.category-toggle-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 24px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border);
+}
+
+.category-toggle-btn {
+    padding: 10px 20px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.category-toggle-btn:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+.category-toggle-btn.active {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--bg-primary);
+}
+
 .shop-products__grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);

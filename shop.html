@@ -75,7 +75,7 @@
                         Buy All Shop Items Now
                     </button>
                 </div>
-                <div class="filter-group">
+                <div class="filter-group" id="collectionFilters">
                     <h3 class="filter-group__title">Collections</h3>
                     <div class="filter-group__options">
                         <label class="filter-option">
@@ -89,6 +89,9 @@
                         </label>
                         <label class="filter-option">
                             <input type="checkbox" value="vintage"> Vintage
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" value="premium"> Premium
                         </label>
                         <label class="filter-option">
                             <input type="checkbox" value="smartwatch"> Smart Watch
@@ -121,6 +124,15 @@
 
             <!-- Products -->
             <div class="shop-main">
+                <div class="category-toggle-bar">
+                    <button class="category-toggle-btn active" data-collection="">All</button>
+                    <button class="category-toggle-btn" data-collection="classic">Classic</button>
+                    <button class="category-toggle-btn" data-collection="sport">Sport</button>
+                    <button class="category-toggle-btn" data-collection="luxury">Luxury</button>
+                    <button class="category-toggle-btn" data-collection="vintage">Vintage</button>
+                    <button class="category-toggle-btn" data-collection="premium">Premium</button>
+                    <button class="category-toggle-btn" data-collection="smartwatch">Smart Watch</button>
+                </div>
                 <div class="shop-toolbar">
                     <span class="shop-toolbar__count">Showing 8 watches</span>
                     <div class="shop-toolbar__actions">
