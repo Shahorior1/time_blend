@@ -1115,11 +1115,20 @@ function initShopPage() {
         showToast(`Added ${currentDisplayedProducts.length} watches to cart`);
     });
 
-    // Buy All Now
+    // Buy All Now (currently displayed products)
     document.getElementById('buyAllNowBtn')?.addEventListener('click', () => {
         currentDisplayedProducts.forEach(p => {
             cart.add(p.id, 1, { color: getProductColors(p)[0].hex, strap: p.straps?.[0] });
         });
+        window.location.href = 'cart.html';
+    });
+
+    // Buy All Shop Items Now (entire catalog, regardless of filters)
+    document.getElementById('buyAllShopItemsBtn')?.addEventListener('click', () => {
+        PRODUCTS.forEach(p => {
+            cart.add(p.id, 1, { color: getProductColors(p)[0].hex, strap: p.straps?.[0] });
+        });
+        showToast(`Added all ${PRODUCTS.length} watches to cart`);
         window.location.href = 'cart.html';
     });
 }
