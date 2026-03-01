@@ -9,6 +9,7 @@ const PRODUCTS = [
         category: 'Classic Collection',
         collection: 'classic',
         price: 1295,
+        featured: true,
         oldPrice: null,
         badge: 'Bestseller',
         desc: '42mm automatic, sapphire crystal',
@@ -750,6 +751,20 @@ function initShopPage() {
 }
 
 // ==========================================
+// Featured Product (for dynamic home page)
+// ==========================================
+function getFeaturedProductId() {
+    const params = new URLSearchParams(window.location.search);
+    const urlFeatured = parseInt(params.get('featured'));
+    if (urlFeatured && PRODUCTS.some(p => p.id === urlFeatured)) return urlFeatured;
+    const featured = PRODUCTS.find(p => p.featured);
+    if (featured) return featured.id;
+    const bestseller = PRODUCTS.find(p => p.badge === 'Bestseller');
+    if (bestseller) return bestseller.id;
+    return PRODUCTS[0]?.id || 1;
+}
+
+// ==========================================
 // Product Detail Page
 // ==========================================
 function initProductDetail() {
@@ -757,14 +772,16 @@ function initProductDetail() {
     const mainImageEl = document.querySelector('.product-detail__main-image') || document.getElementById('homeProductImage');
     const actionsWrap = document.querySelector('.product-detail__actions-wrap') || document.getElementById('homeProductActions');
     const expandEl = document.getElementById('productDetailExpand');
+    const homeSwitcher = document.getElementById('homeProductSwitcher');
     if (!infoEl || !mainImageEl) return;
 
     const params = new URLSearchParams(window.location.search);
     let productId = parseInt(params.get('id'));
-    if (!productId && (document.getElementById('homeProductInfo') || window.location.pathname.endsWith('index.html') || window.location.pathname === '/' || window.location.pathname.endsWith('/'))) {
-        productId = 1;
+    const isHomePage = document.getElementById('homeProductInfo') || window.location.pathname.endsWith('index.html') || window.location.pathname === '/' || window.location.pathname.endsWith('/');
+    if (!productId && isHomePage) {
+        productId = getFeaturedProductId();
     }
-    const product = PRODUCTS.find(p => p.id === productId);
+    let product = PRODUCTS.find(p => p.id === productId);
 
     if (!product) {
         infoEl.innerHTML = '<p>Product not found.</p>';
@@ -772,6 +789,26 @@ function initProductDetail() {
     }
 
     document.title = `${product.name} - Time Blend`;
+
+    // Home page: render product switcher (dots to switch products)
+    if (homeSwitcher && isHomePage) {
+        homeSwitcher.innerHTML = PRODUCTS.map(p => `
+            <button class="product-detail__switcher-dot ${p.id === product.id ? 'active' : ''}" 
+                data-product-id="${p.id}" title="${p.name}" aria-pressed="${p.id === product.id}">
+                <span style="background: ${p.accentColor};"></span>
+            </button>
+        `).join('');
+        homeSwitcher.querySelectorAll('.product-detail__switcher-dot').forEach(dot => {
+            dot.addEventListener('click', () => {
+                const id = parseInt(dot.dataset.productId);
+                const url = new URL(window.location);
+                url.searchParams.set('featured', id);
+                url.searchParams.delete('id');
+                window.history.pushState({}, '', url);
+                initProductDetail();
+            });
+        });
+    }
 
     // Feature pills from specs (Movement, Crystal, Case Size)
     const movement = product.specs['Movement'] ? product.specs['Movement'].split(/[(\s]/)[0].toUpperCase() : '';
@@ -824,7 +861,7 @@ function initProductDetail() {
     if (actionsWrap) {
         actionsWrap.innerHTML = `
             <a href="shop.html" class="btn btn--shop-now">Shop Now</a>
-            <button class="btn btn--add-cart" id="addToCartDetail">Add to Cart</button>
+            <button class="btn btn--add-cart" id="addToCartDetail" data-product-id="${product.id}">Add to Cart</button>
             <button class="btn btn--primary btn--buy-now" id="buyNowDetail" data-product-id="${product.id}">Buy Now</button>
             <button class="btn btn--outline wishlist-btn" style="margin-top: 8px;">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 8px;"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
@@ -875,7 +912,6 @@ function initProductDetail() {
         const qty = parseInt(qtyValue?.value || 1);
         cart.add(product.id, qty);
     });
-
     document.getElementById('buyNowDetail')?.addEventListener('click', () => {
         const qty = parseInt(qtyValue?.value || 1);
         cart.addAndCheckout(product.id, qty);
@@ -1039,4 +1075,9 @@ document.addEventListener('DOMContentLoaded', () => {
     initCartPage();
     initWishlist();
     registerServiceWorker();
+});
+
+// Re-render home product when URL changes (browser back/forward)
+window.addEventListener('popstate', () => {
+    if (document.getElementById('homeProductInfo')) initProductDetail();
 });

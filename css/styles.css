@@ -1707,6 +1707,43 @@ ul { list-style: none; }
     height: 200px;
 }
 
+.product-detail__switcher {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 24px;
+    flex-wrap: wrap;
+}
+
+.product-detail__switcher-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: 2px solid var(--border);
+    background: transparent;
+    cursor: pointer;
+    padding: 0;
+    transition: var(--transition);
+}
+
+.product-detail__switcher-dot span {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    opacity: 0.5;
+}
+
+.product-detail__switcher-dot:hover,
+.product-detail__switcher-dot.active {
+    border-color: var(--accent);
+    transform: scale(1.2);
+}
+
+.product-detail__switcher-dot.active span {
+    opacity: 1;
+}
+
 .product-detail__actions-wrap {
     display: flex;
     flex-direction: column;
