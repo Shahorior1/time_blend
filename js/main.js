@@ -26,7 +26,12 @@ const PRODUCTS = [
         rating: 4.9,
         reviews: 127,
         straps: ['Leather', 'Steel', 'NATO'],
-        accentColor: '#c8a96e'
+        accentColor: '#c8a96e',
+        colors: [
+            { name: 'Midnight Black', hex: '#1a1a1a' },
+            { name: 'Silver', hex: '#c0c0c0' },
+            { name: 'Gold', hex: '#c8a96e' }
+        ]
     },
     {
         id: 2,
@@ -52,7 +57,12 @@ const PRODUCTS = [
         rating: 4.7,
         reviews: 89,
         straps: ['Rubber', 'NATO', 'Steel'],
-        accentColor: '#b0c4de'
+        accentColor: '#b0c4de',
+        colors: [
+            { name: 'Azure Blue', hex: '#b0c4de' },
+            { name: 'Black', hex: '#1a1a1a' },
+            { name: 'Navy', hex: '#1e3a5f' }
+        ]
     },
     {
         id: 3,
@@ -77,7 +87,12 @@ const PRODUCTS = [
         rating: 5.0,
         reviews: 45,
         straps: ['Alligator', 'Gold Bracelet'],
-        accentColor: '#d4af37'
+        accentColor: '#d4af37',
+        colors: [
+            { name: 'Champagne', hex: '#d4af37' },
+            { name: 'White', hex: '#f5f5dc' },
+            { name: 'Rose Gold', hex: '#b76e79' }
+        ]
     },
     {
         id: 4,
@@ -103,7 +118,12 @@ const PRODUCTS = [
         rating: 4.8,
         reviews: 63,
         straps: ['Vintage Leather', 'Canvas'],
-        accentColor: '#8b4513'
+        accentColor: '#8b4513',
+        colors: [
+            { name: 'Aged Patina', hex: '#8b4513' },
+            { name: 'Brown', hex: '#5d4037' },
+            { name: 'Cream', hex: '#d4c4a8' }
+        ]
     },
     {
         id: 5,
@@ -128,7 +148,12 @@ const PRODUCTS = [
         rating: 4.8,
         reviews: 71,
         straps: ['Steel', 'Rubber', 'NATO'],
-        accentColor: '#555'
+        accentColor: '#555',
+        colors: [
+            { name: 'Obsidian Black', hex: '#1a1a1a' },
+            { name: 'Charcoal', hex: '#555' },
+            { name: 'Blue', hex: '#2c3e50' }
+        ]
     },
     {
         id: 6,
@@ -154,7 +179,12 @@ const PRODUCTS = [
         rating: 4.9,
         reviews: 34,
         straps: ['Italian Leather', 'Mesh'],
-        accentColor: '#b76e79'
+        accentColor: '#b76e79',
+        colors: [
+            { name: 'Rose Blush', hex: '#b76e79' },
+            { name: 'Silver', hex: '#c0c0c0' },
+            { name: 'Champagne', hex: '#d4af37' }
+        ]
     },
     {
         id: 7,
@@ -179,7 +209,12 @@ const PRODUCTS = [
         rating: 4.9,
         reviews: 52,
         straps: ['Titanium', 'Leather', 'Rubber'],
-        accentColor: '#708090'
+        accentColor: '#708090',
+        colors: [
+            { name: 'Slate Grey', hex: '#708090' },
+            { name: 'Black', hex: '#1a1a1a' },
+            { name: 'Blue Grey', hex: '#5a6c7d' }
+        ]
     },
     {
         id: 8,
@@ -205,7 +240,12 @@ const PRODUCTS = [
         rating: 4.7,
         reviews: 38,
         straps: ['Cordovan Leather', 'Suede'],
-        accentColor: '#daa520'
+        accentColor: '#daa520',
+        colors: [
+            { name: 'Cream', hex: '#f5f5dc' },
+            { name: 'Gold', hex: '#daa520' },
+            { name: 'Ivory', hex: '#fffff0' }
+        ]
     },
     {
         id: 9,
@@ -560,8 +600,78 @@ const PRODUCTS = [
         reviews: 47,
         straps: ['Alligator', 'Rose Gold Bracelet'],
         accentColor: '#b76e79'
+    },
+    {
+        id: 23,
+        name: 'Raw Steel Industrial',
+        category: 'Sport Collection',
+        collection: 'sport',
+        price: 980,
+        oldPrice: null,
+        badge: 'New',
+        badgeType: 'new',
+        desc: '41mm automatic, raw brushed steel',
+        fullDesc: 'The Raw Steel Industrial embraces unfinished beauty. Its case and bracelet feature a distinctive raw, bead-blasted finish that reveals the natural character of stainless steel. No polish, no plating—just honest, industrial aesthetics. The automatic movement and 100m water resistance make it as capable as it is striking.',
+        specs: {
+            'Case Size': '41mm',
+            'Movement': 'Automatic',
+            'Crystal': 'Sapphire',
+            'Water Resistance': '100m',
+            'Case Material': 'Raw Brushed Steel',
+            'Strap': 'Steel Bracelet',
+            'Power Reserve': '42 hours',
+            'Dial Color': 'Raw Grey'
+        },
+        rating: 4.7,
+        reviews: 38,
+        straps: ['Steel', 'NATO', 'Leather'],
+        accentColor: '#6b6b6b',
+        colors: [
+            { name: 'Raw Steel', hex: '#6b6b6b' },
+            { name: 'Charcoal', hex: '#4a4a4a' },
+            { name: 'Gunmetal', hex: '#2c2c2c' }
+        ]
+    },
+    {
+        id: 24,
+        name: 'Celestial Navigator',
+        category: 'Classic Collection',
+        collection: 'classic',
+        price: 1580,
+        oldPrice: null,
+        badge: null,
+        desc: '40mm automatic, moonphase display',
+        fullDesc: 'The Celestial Navigator brings the night sky to your wrist. A refined moonphase complication tracks the lunar cycle with poetic precision, while the silver-toned dial evokes starlit elegance. The automatic movement and crocodile leather strap make it equally suited for boardroom and ballroom.',
+        specs: {
+            'Case Size': '40mm',
+            'Movement': 'Automatic w/ Moonphase',
+            'Crystal': 'Sapphire',
+            'Water Resistance': '50m',
+            'Case Material': 'Polished Steel',
+            'Strap': 'Crocodile Leather',
+            'Power Reserve': '45 hours',
+            'Dial Color': 'Starlight Silver'
+        },
+        rating: 4.9,
+        reviews: 61,
+        straps: ['Crocodile', 'Steel Bracelet', 'Suede'],
+        accentColor: '#a8b5c4',
+        colors: [
+            { name: 'Starlight Silver', hex: '#a8b5c4' },
+            { name: 'Midnight Blue', hex: '#1e3a5f' },
+            { name: 'Pearl White', hex: '#f0f0f0' }
+        ]
     }
 ];
+
+// Helper: Get color options for a product (dial/accent colors)
+function getProductColors(product) {
+    return product.colors || product.colorOptions || [
+        { name: 'Primary', hex: product.accentColor },
+        { name: 'Silver', hex: '#c0c0c0' },
+        { name: 'Charcoal', hex: '#4a4a4a' }
+    ];
+}
 
 // ==========================================
 // Cart Management
@@ -572,11 +682,19 @@ class Cart {
         this.updateCount();
     }
 
-    add(productId, quantity = 1) {
+    add(productId, quantity = 1, options = {}) {
         const product = PRODUCTS.find(p => p.id === parseInt(productId));
         if (!product) return;
 
-        const existing = this.items.find(item => item.id === product.id);
+        const strap = options.strap || (product.straps && product.straps[0]);
+        const colorHex = options.color || product.accentColor;
+
+        const existing = this.items.find(item => {
+            if (item.id !== product.id) return false;
+            const sameStrap = (item.strap || product.straps?.[0]) === (strap || product.straps?.[0]);
+            const sameColor = (item.colorHex || item.accentColor || product.accentColor) === (colorHex || product.accentColor);
+            return sameStrap && sameColor;
+        });
         if (existing) {
             existing.quantity += quantity;
         } else {
@@ -586,12 +704,19 @@ class Cart {
                 price: product.price,
                 category: product.category,
                 quantity: quantity,
-                accentColor: product.accentColor
+                accentColor: colorHex,
+                strap: strap,
+                colorHex: colorHex
             });
         }
         this.save();
         this.updateCount();
         showToast(`${product.name} added to cart`);
+    }
+
+    addAndCheckout(productId, quantity = 1, options = {}) {
+        this.add(productId, quantity, options);
+        window.location.href = 'cart.html';
     }
 
     remove(productId) {
@@ -744,22 +869,35 @@ function initAnimations() {
 }
 
 // ==========================================
-// Add to Cart Buttons
+// Add to Cart & Buy Now Buttons
 // ==========================================
 function initAddToCart() {
     document.addEventListener('click', (e) => {
-        const btn = e.target.closest('.add-to-cart-btn');
-        if (btn) {
+        const addBtn = e.target.closest('.add-to-cart-btn');
+        if (addBtn) {
             e.preventDefault();
-            const productId = btn.dataset.productId;
-            cart.add(productId);
+            const productId = addBtn.dataset.productId;
+            const color = addBtn.dataset.color;
+            const strap = addBtn.dataset.strap;
+            cart.add(productId, 1, color || strap ? { color, strap } : {});
 
-            btn.textContent = 'Added!';
-            btn.style.background = '#4caf50';
+            addBtn.textContent = 'Added!';
+            addBtn.style.background = '#4caf50';
             setTimeout(() => {
-                btn.textContent = 'Add to Cart';
-                btn.style.background = '';
+                addBtn.textContent = 'Add to Cart';
+                addBtn.style.background = '';
             }, 1500);
+        }
+
+        const buyNowBtn = e.target.closest('.buy-now-btn');
+        if (buyNowBtn) {
+            e.preventDefault();
+            const productId = buyNowBtn.dataset.productId;
+            const qty = parseInt(buyNowBtn.dataset.quantity) || 1;
+            const color = buyNowBtn.dataset.color;
+            const strap = buyNowBtn.dataset.strap;
+            const options = (color || strap) ? { color, strap } : {};
+            cart.addAndCheckout(productId, qty, options);
         }
     });
 }
@@ -779,17 +917,12 @@ function initQuickView() {
             const product = PRODUCTS.find(p => p.id === productId);
             if (!product) return;
 
+            const colors = getProductColors(product);
+            const defaultColor = colors[0].hex;
             const body = document.getElementById('quickViewBody');
             body.innerHTML = `
                 <div class="quick-view__image" style="background: #0d0d0d; border-radius: 8px; padding: 30px; display: flex; align-items: center; justify-content: center; aspect-ratio: 1;">
-                    <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: 100%;">
-                        <circle cx="100" cy="100" r="80" fill="#1a1a1a" stroke="${product.accentColor}" stroke-width="1.5"/>
-                        <circle cx="100" cy="100" r="72" fill="#0d0d0d"/>
-                        <line x1="100" y1="100" x2="100" y2="50" stroke="${product.accentColor}" stroke-width="2.5" stroke-linecap="round"/>
-                        <line x1="100" y1="100" x2="140" y2="80" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/>
-                        <circle cx="100" cy="100" r="3" fill="${product.accentColor}"/>
-                        <text x="100" y="80" text-anchor="middle" fill="${product.accentColor}" font-size="5" letter-spacing="2">TIME BLEND</text>
-                    </svg>
+                    <div id="quickViewWatchSvg">${createWatchSVG(defaultColor, 'full')}</div>
                 </div>
                 <div class="quick-view__info">
                     <p style="font-size: 0.75rem; color: var(--accent); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px;">${product.category}</p>
@@ -799,13 +932,33 @@ function initQuickView() {
                         <span style="font-size: 0.8rem; color: var(--text-muted); margin-left: 4px;">(${product.reviews})</span>
                     </div>
                     <p style="font-family: var(--font-display); font-size: 1.5rem; color: var(--accent); font-weight: 600; margin-bottom: 16px;">$${product.price.toLocaleString()}</p>
+                    <div style="margin-bottom: 16px;">
+                        <span style="font-size: 0.8rem; color: var(--text-muted); display: block; margin-bottom: 8px;">Watch Color</span>
+                        <div class="color-options">
+                            ${colors.map((c, i) => `
+                                <button class="color-option color-swatch ${i === 0 ? 'active' : ''}" data-color="${c.hex}" title="${c.name}" style="background-color: ${c.hex}; --swatch: ${c.hex};"></button>
+                            `).join('')}
+                        </div>
+                    </div>
                     <p style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.7; margin-bottom: 24px;">${product.fullDesc}</p>
-                    <div style="display: flex; gap: 12px;">
-                        <button class="btn btn--primary add-to-cart-btn" data-product-id="${product.id}" style="flex: 1;">Add to Cart</button>
+                    <div style="display: flex; flex-wrap: wrap; gap: 12px;">
+                        <button class="btn btn--outline add-to-cart-btn" data-product-id="${product.id}" data-color="${defaultColor}" data-strap="${product.straps?.[0]}" style="flex: 1;">Add to Cart</button>
+                        <button class="btn btn--primary buy-now-btn" data-product-id="${product.id}" data-color="${defaultColor}" data-strap="${product.straps?.[0]}" style="flex: 1;">Buy Now</button>
                         <a href="product-detail.html?id=${product.id}" class="btn btn--outline" style="flex: 1; text-align: center;">View Details</a>
                     </div>
                 </div>
             `;
+
+            body.querySelectorAll('.color-option, .color-swatch').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    body.querySelectorAll('.color-option, .color-swatch').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    const color = btn.dataset.color;
+                    body.querySelectorAll('.add-to-cart-btn, .buy-now-btn').forEach(b => { b.dataset.color = color; b.dataset.strap = product.straps?.[0]; });
+                    const svgContainer = document.getElementById('quickViewWatchSvg');
+                    if (svgContainer) svgContainer.innerHTML = createWatchSVG(color, 'full');
+                });
+            });
 
             modal.classList.add('active');
         }
@@ -882,24 +1035,23 @@ function initShopPage() {
         );
     }
 
+    let currentDisplayedProducts = [];
     function renderProducts(products) {
+        currentDisplayedProducts = products;
         const count = document.querySelector('.shop-toolbar__count');
         if (count) count.textContent = `Showing ${products.length} watches`;
 
-        grid.innerHTML = products.map(p => `
-            <div class="product-card" data-product-id="${p.id}">
+        grid.innerHTML = products.map(p => {
+            const colors = getProductColors(p);
+            const defaultColor = colors[0].hex;
+            const saleLabel = p.badgeType === 'sale' && p.badge ? `SALE ${p.badge}` : p.badge;
+            return `
+            <div class="product-card product-card--shop" data-product-id="${p.id}" data-selected-color="${defaultColor}">
                 <div class="product-card__image">
-                    <div class="product-card__placeholder">
-                        <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <circle cx="100" cy="100" r="80" fill="#1a1a1a" stroke="${p.accentColor}" stroke-width="1.5"/>
-                            <circle cx="100" cy="100" r="72" fill="#0d0d0d"/>
-                            <line x1="100" y1="100" x2="100" y2="50" stroke="${p.accentColor}" stroke-width="2.5" stroke-linecap="round"/>
-                            <line x1="100" y1="100" x2="140" y2="80" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/>
-                            <circle cx="100" cy="100" r="3" fill="${p.accentColor}"/>
-                            <text x="100" y="80" text-anchor="middle" fill="${p.accentColor}" font-size="5" letter-spacing="2">TIME BLEND</text>
-                        </svg>
+                    <div class="product-card__placeholder product-card__watch-preview" data-default-color="${defaultColor}">
+                        ${createWatchSVG(defaultColor, 'full')}
                     </div>
-                    ${p.badge ? `<span class="product-card__badge ${p.badgeType === 'new' ? 'badge--new' : p.badgeType === 'sale' ? 'badge--sale' : ''}">${p.badge}</span>` : ''}
+                    ${p.badge ? `<span class="product-card__badge ${p.badgeType === 'new' ? 'badge--new' : p.badgeType === 'sale' ? 'badge--sale' : ''}">${saleLabel || p.badge}</span>` : ''}
                     <div class="product-card__actions">
                         <button class="product-card__action-btn quick-view-btn" data-product-id="${p.id}" title="Quick View">
                             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
@@ -913,16 +1065,57 @@ function initShopPage() {
                     <p class="product-card__category">${p.category}</p>
                     <h3 class="product-card__name"><a href="product-detail.html?id=${p.id}">${p.name}</a></h3>
                     <p class="product-card__desc">${p.desc}</p>
-                    <div class="product-card__footer">
-                        <div>
-                            <span class="product-card__price">$${p.price.toLocaleString()}</span>
-                            ${p.oldPrice ? `<span class="product-card__price--old">$${p.oldPrice.toLocaleString()}</span>` : ''}
+                    <div class="product-card__colors product-card__color-options">
+                        <span class="product-card__colors-label">Color:</span>
+                        <div class="color-options color-options--card">
+                            ${colors.map((c, i) => `
+                                <button class="color-option color-option--sm color-swatch color-swatch--sm ${i === 0 ? 'active' : ''}" data-color="${c.hex}" title="${c.name}" style="background-color: ${c.hex}; --swatch: ${c.hex};"></button>
+                            `).join('')}
                         </div>
-                        <button class="btn btn--small add-to-cart-btn" data-product-id="${p.id}">Add to Cart</button>
+                    </div>
+                    <div class="product-card__footer">
+                        <div class="product-card__pricing">
+                            ${p.oldPrice ? `<span class="product-card__price--old">$${p.oldPrice.toLocaleString()}</span> ` : ''}
+                            <span class="product-card__price ${p.oldPrice ? 'product-card__price--sale' : ''}">$${p.price.toLocaleString()}</span>
+                        </div>
+                        <div class="product-card__btns">
+                            <button class="btn btn--small add-to-cart-btn" data-product-id="${p.id}">Add to Cart</button>
+                            <button class="btn btn--small btn--primary buy-now-btn" data-product-id="${p.id}">Buy Now</button>
+                        </div>
                     </div>
                 </div>
             </div>
-        `).join('');
+            `;
+        }).join('');
+
+        // Color picker on shop cards - update watch preview and selected color
+        grid.querySelectorAll('.product-card--shop').forEach(card => {
+            const preview = card.querySelector('.product-card__watch-preview');
+            card.querySelectorAll('.color-option, .color-swatch').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    card.querySelectorAll('.color-option, .color-swatch').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    const color = btn.dataset.color;
+                    card.dataset.selectedColor = color;
+                    if (preview) preview.innerHTML = createWatchSVG(color, 'full');
+                });
+            });
+        });
+
+        // Set color/strap on buttons before add-to-cart/buy-now handlers run
+        grid.addEventListener('click', (e) => {
+            const addBtn = e.target.closest('.add-to-cart-btn');
+            const buyBtn = e.target.closest('.buy-now-btn');
+            const card = (addBtn || buyBtn)?.closest('.product-card');
+            if (card && (addBtn || buyBtn)) {
+                const color = card.dataset.selectedColor;
+                const product = PRODUCTS.find(pr => pr.id === parseInt(card.dataset.productId));
+                if (addBtn) { addBtn.dataset.color = color; addBtn.dataset.strap = product?.straps?.[0]; }
+                if (buyBtn) { buyBtn.dataset.color = color; buyBtn.dataset.strap = product?.straps?.[0]; }
+            }
+        }, true);
     }
 
     renderProducts(filtered);
@@ -974,6 +1167,31 @@ function initShopPage() {
             renderProducts(result);
         });
     }
+
+    // Add All to Cart
+    document.getElementById('addAllToCartBtn')?.addEventListener('click', () => {
+        currentDisplayedProducts.forEach(p => {
+            cart.add(p.id, 1, { color: getProductColors(p)[0].hex, strap: p.straps?.[0] });
+        });
+        showToast(`Added ${currentDisplayedProducts.length} watches to cart`);
+    });
+
+    // Buy All Now (currently displayed products)
+    document.getElementById('buyAllNowBtn')?.addEventListener('click', () => {
+        currentDisplayedProducts.forEach(p => {
+            cart.add(p.id, 1, { color: getProductColors(p)[0].hex, strap: p.straps?.[0] });
+        });
+        window.location.href = 'cart.html';
+    });
+
+    // Buy All Shop Items Now (entire catalog, regardless of filters)
+    document.getElementById('buyAllShopItemsBtn')?.addEventListener('click', () => {
+        PRODUCTS.forEach(p => {
+            cart.add(p.id, 1, { color: getProductColors(p)[0].hex, strap: p.straps?.[0] });
+        });
+        showToast(`Added all ${PRODUCTS.length} watches to cart`);
+        window.location.href = 'cart.html';
+    });
 }
 
 // ==========================================
@@ -997,10 +1215,11 @@ function initProductDetail() {
     const breadcrumbName = document.getElementById('productBreadcrumb');
     if (breadcrumbName) breadcrumbName.textContent = product.name;
 
+    const initialColor = getProductColors(product)[0].hex;
     // Main image
     const mainImage = document.querySelector('.product-detail__main-image');
     if (mainImage) {
-        mainImage.innerHTML = createWatchSVG(product.accentColor, 'large');
+        mainImage.innerHTML = createWatchSVG(initialColor, 'large');
     }
 
     // Thumbnails
@@ -1008,7 +1227,7 @@ function initProductDetail() {
     if (thumbs) {
         thumbs.innerHTML = [1, 2, 3, 4].map((_, i) => `
             <div class="product-detail__thumb ${i === 0 ? 'active' : ''}">
-                ${createWatchSVG(product.accentColor, 'small')}
+                ${createWatchSVG(initialColor, 'small')}
             </div>
         `).join('');
     }
@@ -1022,6 +1241,15 @@ function initProductDetail() {
         </div>
         <p class="product-detail__price">$${product.price.toLocaleString()}${product.oldPrice ? ` <span class="product-card__price--old">$${product.oldPrice.toLocaleString()}</span>` : ''}</p>
         <p class="product-detail__desc">${product.fullDesc}</p>
+
+        <div class="product-detail__options">
+            <span class="option-label">Watch Color</span>
+            <div class="color-options">
+                ${getProductColors(product).map((c, i) => `
+                    <button class="color-option color-swatch ${i === 0 ? 'active' : ''}" data-color="${c.hex}" title="${c.name}" style="background-color: ${c.hex}; --swatch: ${c.hex};" aria-label="${c.name}"></button>
+                `).join('')}
+            </div>
+        </div>
 
         <div class="product-detail__options">
             <span class="option-label">Strap Type</span>
@@ -1040,7 +1268,8 @@ function initProductDetail() {
         </div>
 
         <div class="product-detail__actions">
-            <button class="btn btn--primary" id="addToCartDetail">Add to Cart</button>
+            <button class="btn btn--outline" id="addToCartDetail">Add to Cart</button>
+            <button class="btn btn--primary" id="buyNowDetail" data-product-id="${product.id}">Buy Now</button>
             <button class="btn btn--outline wishlist-btn">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 8px;"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
                 Wishlist
@@ -1066,6 +1295,26 @@ function initProductDetail() {
         </div>
     `;
 
+    // Color option toggle - updates watch display
+    let selectedColor = initialColor;
+    const mainImageEl = document.querySelector('.product-detail__main-image');
+    const thumbsEl = document.querySelector('.product-detail__thumbnails');
+    infoEl.querySelectorAll('.color-option, .color-swatch').forEach(btn => {
+        btn.addEventListener('click', () => {
+            infoEl.querySelectorAll('.color-option, .color-swatch').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            selectedColor = btn.dataset.color;
+            if (mainImageEl) mainImageEl.innerHTML = createWatchSVG(selectedColor, 'large');
+            if (thumbsEl) {
+                thumbsEl.innerHTML = [1, 2, 3, 4].map((_, i) => `
+                    <div class="product-detail__thumb ${i === 0 ? 'active' : ''}">
+                        ${createWatchSVG(selectedColor, 'small')}
+                    </div>
+                `).join('');
+            }
+        });
+    });
+
     // Strap option toggle
     infoEl.querySelectorAll('.strap-option').forEach(btn => {
         btn.addEventListener('click', () => {
@@ -1085,22 +1334,30 @@ function initProductDetail() {
         if (v < 10) qtyValue.value = v + 1;
     });
 
+    const getSelectedStrap = () => infoEl.querySelector('.strap-option.active')?.textContent || product.straps[0];
+
     // Add to cart
     document.getElementById('addToCartDetail')?.addEventListener('click', () => {
         const qty = parseInt(qtyValue.value);
-        cart.add(product.id, qty);
+        cart.add(product.id, qty, { strap: getSelectedStrap(), color: selectedColor });
+    });
+
+    // Buy Now
+    document.getElementById('buyNowDetail')?.addEventListener('click', () => {
+        const qty = parseInt(qtyValue.value);
+        cart.addAndCheckout(product.id, qty, { strap: getSelectedStrap(), color: selectedColor });
     });
 }
 
 function createWatchSVG(color, size) {
-    const s = size === 'large' ? 300 : 60;
-    return `<svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: ${s}px; height: ${s}px;">
+    const s = size === 'large' ? 300 : size === 'full' ? '100%' : 60;
+    return `<svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: ${s}; height: ${s};">
         <circle cx="100" cy="100" r="80" fill="#1a1a1a" stroke="${color}" stroke-width="1.5"/>
         <circle cx="100" cy="100" r="72" fill="#0d0d0d"/>
         <line x1="100" y1="100" x2="100" y2="50" stroke="${color}" stroke-width="2.5" stroke-linecap="round"/>
         <line x1="100" y1="100" x2="140" y2="80" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/>
         <circle cx="100" cy="100" r="3" fill="${color}"/>
-        ${size === 'large' ? `<text x="100" y="80" text-anchor="middle" fill="${color}" font-size="5" letter-spacing="2">TIME BLEND</text>` : ''}
+        ${(size === 'large' || size === 'full') ? `<text x="100" y="80" text-anchor="middle" fill="${color}" font-size="5" letter-spacing="2">TIME BLEND</text>` : ''}
     </svg>`;
 }
 
@@ -1138,6 +1395,7 @@ function initCartPage() {
                 <div class="cart-item__info">
                     <h4>${item.name}</h4>
                     <p>${item.category}</p>
+                    ${(item.strap || item.colorHex) ? `<p class="cart-item__options" style="font-size: 0.75rem; color: var(--text-muted); margin-top: 4px;">${[item.strap, item.colorHex ? `Color` : null].filter(Boolean).join(' • ')}</p>` : ''}
                     <div class="qty-control" style="margin-top: 8px;">
                         <button class="qty-btn cart-qty-minus" data-id="${item.id}">−</button>
                         <input type="number" class="qty-value" value="${item.quantity}" readonly style="width: 40px;">

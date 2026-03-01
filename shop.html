@@ -70,6 +70,11 @@
         <div class="shop-layout">
             <!-- Sidebar -->
             <aside class="shop-sidebar">
+                <div class="filter-group filter-group--buy-all">
+                    <button class="btn btn--primary btn--block" id="buyAllShopItemsBtn">
+                        Buy All Shop Items Now
+                    </button>
+                </div>
                 <div class="filter-group">
                     <h3 class="filter-group__title">Collections</h3>
                     <div class="filter-group__options">
@@ -118,6 +123,10 @@
             <div class="shop-main">
                 <div class="shop-toolbar">
                     <span class="shop-toolbar__count">Showing 8 watches</span>
+                    <div class="shop-toolbar__actions">
+                        <button class="btn btn--outline btn--small" id="addAllToCartBtn">Add All to Cart</button>
+                        <button class="btn btn--primary btn--small" id="buyAllNowBtn">Buy All Now</button>
+                    </div>
                     <div class="shop-toolbar__sort">
                         <select>
                             <option value="featured">Sort by: Featured</option>
