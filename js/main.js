@@ -1450,6 +1450,9 @@ function initCartPage() {
         if (subtotalEl) subtotalEl.textContent = `$${subtotal.toLocaleString()}`;
         if (shippingEl) shippingEl.textContent = shipping === 0 ? 'Free' : `$${shipping}`;
         if (totalEl) totalEl.textContent = `$${total.toLocaleString()}`;
+
+        const summary = document.querySelector('.cart-summary');
+        if (summary) summary.style.display = '';
     }
 
     renderCart();
@@ -1482,10 +1485,7 @@ function initCartPage() {
         }
     });
 
-    // Checkout button
-    document.getElementById('checkoutBtn')?.addEventListener('click', () => {
-        window.location.href = 'checkout.html';
-    });
+    // Checkout link navigates to checkout.html (anchor tag for reliability)
 }
 
 // ==========================================
