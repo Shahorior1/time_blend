@@ -3463,8 +3463,63 @@ ul { list-style: none; }
 }
 
 /* =============================================
-   WhatsApp Floating Button
+   Floating Action Buttons (Call & WhatsApp)
    ============================================= */
+.call-btn {
+    position: fixed;
+    bottom: 100px;
+    right: 30px;
+    z-index: 5000;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: var(--bg-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 20px rgba(200, 169, 110, 0.4);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.call-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 30px rgba(200, 169, 110, 0.6);
+    color: var(--bg-primary);
+}
+
+.call-btn__tooltip {
+    position: absolute;
+    right: 72px;
+    background: var(--bg-elevated, #1a1a1a);
+    color: #fff;
+    font-size: 0.85rem;
+    font-weight: 500;
+    padding: 8px 16px;
+    border-radius: 6px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateX(8px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.3);
+}
+
+.call-btn__tooltip::after {
+    content: '';
+    position: absolute;
+    right: -6px;
+    top: 50%;
+    transform: translateY(-50%);
+    border: 6px solid transparent;
+    border-left-color: var(--bg-elevated, #1a1a1a);
+}
+
+.call-btn:hover .call-btn__tooltip {
+    opacity: 1;
+    transform: translateX(0);
+}
+
 .whatsapp-btn {
     position: fixed;
     bottom: 30px;
@@ -3526,6 +3581,17 @@ ul { list-style: none; }
 }
 
 @media (max-width: 768px) {
+    .call-btn {
+        bottom: 90px;
+        right: 20px;
+        width: 54px;
+        height: 54px;
+    }
+
+    .call-btn__tooltip {
+        display: none;
+    }
+
     .whatsapp-btn {
         bottom: 20px;
         right: 20px;

@@ -1541,7 +1541,6 @@ function initCheckoutPage() {
 
         const formData = {
             name: document.getElementById('checkoutName').value.trim(),
-            email: document.getElementById('checkoutEmail').value.trim(),
             phone: document.getElementById('checkoutPhone').value.trim(),
             address: document.getElementById('checkoutAddress').value.trim(),
             zila: document.getElementById('checkoutZila').value.trim(),
@@ -1549,7 +1548,7 @@ function initCheckoutPage() {
             payment: document.querySelector('input[name="payment"]:checked')?.value || 'cod'
         };
 
-        if (!formData.name || !formData.email || !formData.phone || !formData.address || !formData.zila) {
+        if (!formData.name || !formData.phone || !formData.address || !formData.zila) {
             showToast('Please fill in all required fields');
             return;
         }
