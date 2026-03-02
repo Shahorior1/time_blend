@@ -1484,7 +1484,97 @@ function initCartPage() {
 
     // Checkout button
     document.getElementById('checkoutBtn')?.addEventListener('click', () => {
-        showToast('Thank you! Checkout feature coming soon.');
+        window.location.href = 'checkout.html';
+    });
+}
+
+// ==========================================
+// Checkout Page
+// ==========================================
+function initCheckoutPage() {
+    const checkoutContent = document.getElementById('checkoutContent');
+    const checkoutEmpty = document.getElementById('checkoutEmpty');
+    const checkoutForm = document.getElementById('checkoutForm');
+    const orderItemsEl = document.getElementById('checkoutOrderItems');
+    const orderSuccessModal = document.getElementById('orderSuccessModal');
+
+    if (!checkoutContent || !checkoutForm) return;
+
+    function renderCheckout() {
+        if (cart.items.length === 0) {
+            checkoutContent.style.display = 'none';
+            if (checkoutEmpty) checkoutEmpty.style.display = 'block';
+            return;
+        }
+        if (checkoutEmpty) checkoutEmpty.style.display = 'none';
+        checkoutContent.style.display = 'grid';
+
+        const subtotal = cart.getTotal();
+        const shipping = subtotal >= 500 ? 0 : 25;
+        const total = subtotal + shipping;
+
+        orderItemsEl.innerHTML = cart.items.map(item => `
+            <div class="checkout-order-item">
+                <div class="checkout-order-item__info">
+                    <span class="checkout-order-item__name">${item.name} × ${item.quantity}</span>
+                    <span class="checkout-order-item__price">$${(item.price * item.quantity).toLocaleString()}</span>
+                </div>
+            </div>
+        `).join('');
+
+        const subtotalEl = document.getElementById('checkoutSubtotal');
+        const shippingEl = document.getElementById('checkoutShipping');
+        const totalEl = document.getElementById('checkoutTotal');
+        if (subtotalEl) subtotalEl.textContent = `$${subtotal.toLocaleString()}`;
+        if (shippingEl) shippingEl.textContent = shipping === 0 ? 'Free' : `$${shipping}`;
+        if (totalEl) totalEl.textContent = `$${total.toLocaleString()}`;
+    }
+
+    renderCheckout();
+
+    checkoutForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        if (cart.items.length === 0) {
+            showToast('Your cart is empty');
+            return;
+        }
+
+        const formData = {
+            name: document.getElementById('checkoutName').value.trim(),
+            email: document.getElementById('checkoutEmail').value.trim(),
+            phone: document.getElementById('checkoutPhone').value.trim(),
+            address: document.getElementById('checkoutAddress').value.trim(),
+            city: document.getElementById('checkoutCity').value.trim(),
+            state: document.getElementById('checkoutState').value.trim(),
+            zip: document.getElementById('checkoutZip').value.trim(),
+            country: document.getElementById('checkoutCountry').value.trim(),
+            payment: document.querySelector('input[name="payment"]:checked')?.value || 'cod'
+        };
+
+        if (!formData.name || !formData.email || !formData.phone || !formData.address || !formData.city || !formData.zip || !formData.country) {
+            showToast('Please fill in all required fields');
+            return;
+        }
+
+        cart.clear();
+        renderCheckout();
+        checkoutForm.reset();
+        document.querySelector('.payment-option--selected')?.classList.remove('payment-option--selected');
+        document.querySelector('.payment-option')?.classList.add('payment-option--selected');
+
+        if (orderSuccessModal) orderSuccessModal.classList.add('active');
+    });
+
+    orderSuccessModal?.querySelector('.modal__overlay')?.addEventListener('click', () => orderSuccessModal.classList.remove('active'));
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && orderSuccessModal?.classList.contains('active')) orderSuccessModal.classList.remove('active');
+    });
+
+    document.querySelectorAll('.payment-option').forEach(opt => {
+        opt.addEventListener('click', () => {
+            document.querySelectorAll('.payment-option').forEach(o => o.classList.remove('payment-option--selected'));
+            opt.classList.add('payment-option--selected');
+        });
     });
 }
 
@@ -1829,6 +1919,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initShopPage();
     initProductDetail();
     initCartPage();
+    initCheckoutPage();
     initWishlist();
     initParticles();
     initHeroSlider();
