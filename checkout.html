@@ -63,7 +63,7 @@
                 <span>Checkout</span>
             </div>
             <h1 class="page-header__title">Checkout</h1>
-            <p class="page-header__desc">Complete your order with delivery details and cash on delivery.</p>
+            <p class="page-header__desc">Delivery within Bangladesh. Pay with cash when your order arrives.</p>
         </div>
     </section>
 
@@ -88,7 +88,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="checkoutPhone">Phone <span class="required">*</span></label>
-                                <input type="tel" id="checkoutPhone" name="phone" placeholder="+1 234 567 8900" required>
+                                <input type="tel" id="checkoutPhone" name="phone" placeholder="01XXX-XXXXXX or +880" required>
                             </div>
                         </div>
                         <div class="form-group">
@@ -97,26 +97,77 @@
                         </div>
                         <div class="form-group">
                             <label for="checkoutAddress">Address <span class="required">*</span></label>
-                            <textarea id="checkoutAddress" name="address" rows="3" placeholder="Street address, apartment, suite, etc." required></textarea>
-                        </div>
-                        <div class="form-row form-row--3">
-                            <div class="form-group">
-                                <label for="checkoutCity">City <span class="required">*</span></label>
-                                <input type="text" id="checkoutCity" name="city" placeholder="New York" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="checkoutState">State / Province</label>
-                                <input type="text" id="checkoutState" name="state" placeholder="NY">
-                            </div>
-                            <div class="form-group">
-                                <label for="checkoutZip">ZIP / Postal Code <span class="required">*</span></label>
-                                <input type="text" id="checkoutZip" name="zip" placeholder="10001" required>
-                            </div>
+                            <textarea id="checkoutAddress" name="address" rows="3" placeholder="Village, road, house number, area..." required></textarea>
                         </div>
                         <div class="form-group">
-                            <label for="checkoutCountry">Country <span class="required">*</span></label>
-                            <input type="text" id="checkoutCountry" name="country" placeholder="United States" required>
+                            <label for="checkoutZila">Zila (District) <span class="required">*</span></label>
+                            <select id="checkoutZila" name="zila" required>
+                                <option value="">Select your zila</option>
+                                <option value="Bagerhat">Bagerhat</option>
+                                <option value="Bandarban">Bandarban</option>
+                                <option value="Barguna">Barguna</option>
+                                <option value="Barisal">Barisal</option>
+                                <option value="Bhola">Bhola</option>
+                                <option value="Bogra">Bogra</option>
+                                <option value="Brahmanbaria">Brahmanbaria</option>
+                                <option value="Chandpur">Chandpur</option>
+                                <option value="Chapainawabganj">Chapainawabganj</option>
+                                <option value="Chittagong">Chittagong</option>
+                                <option value="Chuadanga">Chuadanga</option>
+                                <option value="Comilla">Comilla</option>
+                                <option value="Cox's Bazar">Cox's Bazar</option>
+                                <option value="Dhaka">Dhaka</option>
+                                <option value="Dinajpur">Dinajpur</option>
+                                <option value="Faridpur">Faridpur</option>
+                                <option value="Feni">Feni</option>
+                                <option value="Gaibandha">Gaibandha</option>
+                                <option value="Gazipur">Gazipur</option>
+                                <option value="Gopalganj">Gopalganj</option>
+                                <option value="Habiganj">Habiganj</option>
+                                <option value="Jamalpur">Jamalpur</option>
+                                <option value="Jessore">Jessore</option>
+                                <option value="Jhalokathi">Jhalokathi</option>
+                                <option value="Jhenaidah">Jhenaidah</option>
+                                <option value="Joypurhat">Joypurhat</option>
+                                <option value="Khagrachari">Khagrachari</option>
+                                <option value="Khulna">Khulna</option>
+                                <option value="Kishoreganj">Kishoreganj</option>
+                                <option value="Kurigram">Kurigram</option>
+                                <option value="Kushtia">Kushtia</option>
+                                <option value="Lakshmipur">Lakshmipur</option>
+                                <option value="Lalmonirhat">Lalmonirhat</option>
+                                <option value="Madaripur">Madaripur</option>
+                                <option value="Magura">Magura</option>
+                                <option value="Manikganj">Manikganj</option>
+                                <option value="Meherpur">Meherpur</option>
+                                <option value="Moulvibazar">Moulvibazar</option>
+                                <option value="Munshiganj">Munshiganj</option>
+                                <option value="Mymensingh">Mymensingh</option>
+                                <option value="Naogaon">Naogaon</option>
+                                <option value="Narail">Narail</option>
+                                <option value="Narayanganj">Narayanganj</option>
+                                <option value="Narsingdi">Narsingdi</option>
+                                <option value="Natore">Natore</option>
+                                <option value="Netrakona">Netrakona</option>
+                                <option value="Nilphamari">Nilphamari</option>
+                                <option value="Noakhali">Noakhali</option>
+                                <option value="Pabna">Pabna</option>
+                                <option value="Patuakhali">Patuakhali</option>
+                                <option value="Pirojpur">Pirojpur</option>
+                                <option value="Rajshahi">Rajshahi</option>
+                                <option value="Rangamati">Rangamati</option>
+                                <option value="Rangpur">Rangpur</option>
+                                <option value="Satkhira">Satkhira</option>
+                                <option value="Shariatpur">Shariatpur</option>
+                                <option value="Sherpur">Sherpur</option>
+                                <option value="Sirajganj">Sirajganj</option>
+                                <option value="Sunamganj">Sunamganj</option>
+                                <option value="Sylhet">Sylhet</option>
+                                <option value="Tangail">Tangail</option>
+                                <option value="Thakurgaon">Thakurgaon</option>
+                            </select>
                         </div>
+                        <input type="hidden" id="checkoutCountry" name="country" value="Bangladesh">
 
                         <h3 class="checkout-form__title checkout-form__title--mt">Payment Method</h3>
                         <div class="payment-options">

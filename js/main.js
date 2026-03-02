@@ -1544,14 +1544,12 @@ function initCheckoutPage() {
             email: document.getElementById('checkoutEmail').value.trim(),
             phone: document.getElementById('checkoutPhone').value.trim(),
             address: document.getElementById('checkoutAddress').value.trim(),
-            city: document.getElementById('checkoutCity').value.trim(),
-            state: document.getElementById('checkoutState').value.trim(),
-            zip: document.getElementById('checkoutZip').value.trim(),
-            country: document.getElementById('checkoutCountry').value.trim(),
+            zila: document.getElementById('checkoutZila').value.trim(),
+            country: document.getElementById('checkoutCountry')?.value || 'Bangladesh',
             payment: document.querySelector('input[name="payment"]:checked')?.value || 'cod'
         };
 
-        if (!formData.name || !formData.email || !formData.phone || !formData.address || !formData.city || !formData.zip || !formData.country) {
+        if (!formData.name || !formData.email || !formData.phone || !formData.address || !formData.zila) {
             showToast('Please fill in all required fields');
             return;
         }
