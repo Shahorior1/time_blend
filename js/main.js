@@ -600,6 +600,67 @@ const PRODUCTS = [
         reviews: 47,
         straps: ['Alligator', 'Rose Gold Bracelet'],
         accentColor: '#b76e79'
+    },
+    {
+        id: 23,
+        name: 'Raw Steel Industrial',
+        category: 'Sport Collection',
+        collection: 'sport',
+        price: 980,
+        oldPrice: null,
+        badge: 'New',
+        badgeType: 'new',
+        desc: '41mm automatic, raw brushed steel',
+        fullDesc: 'The Raw Steel Industrial embraces unfinished beauty. Its case and bracelet feature a distinctive raw, bead-blasted finish that reveals the natural character of stainless steel. No polish, no plating—just honest, industrial aesthetics. The automatic movement and 100m water resistance make it as capable as it is striking.',
+        specs: {
+            'Case Size': '41mm',
+            'Movement': 'Automatic',
+            'Crystal': 'Sapphire',
+            'Water Resistance': '100m',
+            'Case Material': 'Raw Brushed Steel',
+            'Strap': 'Steel Bracelet',
+            'Power Reserve': '42 hours',
+            'Dial Color': 'Raw Grey'
+        },
+        rating: 4.7,
+        reviews: 38,
+        straps: ['Steel', 'NATO', 'Leather'],
+        accentColor: '#6b6b6b',
+        colors: [
+            { name: 'Raw Steel', hex: '#6b6b6b' },
+            { name: 'Charcoal', hex: '#4a4a4a' },
+            { name: 'Gunmetal', hex: '#2c2c2c' }
+        ]
+    },
+    {
+        id: 24,
+        name: 'Celestial Navigator',
+        category: 'Classic Collection',
+        collection: 'classic',
+        price: 1580,
+        oldPrice: null,
+        badge: null,
+        desc: '40mm automatic, moonphase display',
+        fullDesc: 'The Celestial Navigator brings the night sky to your wrist. A refined moonphase complication tracks the lunar cycle with poetic precision, while the silver-toned dial evokes starlit elegance. The automatic movement and crocodile leather strap make it equally suited for boardroom and ballroom.',
+        specs: {
+            'Case Size': '40mm',
+            'Movement': 'Automatic w/ Moonphase',
+            'Crystal': 'Sapphire',
+            'Water Resistance': '50m',
+            'Case Material': 'Polished Steel',
+            'Strap': 'Crocodile Leather',
+            'Power Reserve': '45 hours',
+            'Dial Color': 'Starlight Silver'
+        },
+        rating: 4.9,
+        reviews: 61,
+        straps: ['Crocodile', 'Steel Bracelet', 'Suede'],
+        accentColor: '#a8b5c4',
+        colors: [
+            { name: 'Starlight Silver', hex: '#a8b5c4' },
+            { name: 'Midnight Blue', hex: '#1e3a5f' },
+            { name: 'Pearl White', hex: '#f0f0f0' }
+        ]
     }
 ];
 
@@ -955,14 +1016,16 @@ function initShopPage() {
     if (!grid) return;
 
     const params = new URLSearchParams(window.location.search);
-    const collectionFilter = params.get('collection');
+    let collectionFilter = params.get('collection') || '';
     const searchQuery = params.get('search')?.toLowerCase();
 
     let filtered = [...PRODUCTS];
 
     if (collectionFilter) {
         filtered = filtered.filter(p => p.collection === collectionFilter);
-        const checkbox = document.querySelector(`input[value="${collectionFilter}"]`);
+        const toggleBtn = document.querySelector(`.category-toggle-btn[data-collection="${collectionFilter}"]`);
+        const checkbox = document.querySelector(`input[type="checkbox"][value="${collectionFilter}"]`);
+        if (toggleBtn) { document.querySelectorAll('.category-toggle-btn').forEach(b => b.classList.remove('active')); toggleBtn.classList.add('active'); }
         if (checkbox) checkbox.checked = true;
     }
 
@@ -973,6 +1036,25 @@ function initShopPage() {
             p.desc.toLowerCase().includes(searchQuery)
         );
     }
+
+    // Category toggle bar
+    const collectionFiltersEl = document.getElementById('collectionFilters');
+    document.querySelectorAll('.category-toggle-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('.category-toggle-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            collectionFilter = btn.dataset.collection || '';
+            if (collectionFiltersEl) {
+                collectionFiltersEl.querySelectorAll('input[type="checkbox"]').forEach(cb => { cb.checked = false; });
+                const checkbox = collectionFiltersEl.querySelector(`input[type="checkbox"][value="${collectionFilter}"]`);
+                if (checkbox) checkbox.checked = true;
+            }
+            let result = collectionFilter ? PRODUCTS.filter(p => p.collection === collectionFilter) : [...PRODUCTS];
+            if (searchQuery) result = result.filter(p => p.name.toLowerCase().includes(searchQuery) || p.category.toLowerCase().includes(searchQuery) || p.desc.toLowerCase().includes(searchQuery));
+            filtered = result;
+            renderProducts(filtered);
+        });
+    });
 
     let currentDisplayedProducts = [];
     function renderProducts(products) {
@@ -1059,11 +1141,18 @@ function initShopPage() {
 
     renderProducts(filtered);
 
-    // Filter checkboxes
-    document.querySelectorAll('.filter-option input[type="checkbox"]').forEach(cb => {
-        cb.addEventListener('change', () => {
-            const checked = Array.from(document.querySelectorAll('.filter-option input[type="checkbox"]:checked'))
-                .map(el => el.value);
+    // Filter checkboxes - sync with toggle bar
+    if (collectionFiltersEl) {
+        collectionFiltersEl.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+            cb.addEventListener('change', () => {
+                const checked = Array.from(collectionFiltersEl.querySelectorAll('input[type="checkbox"]:checked'))
+                    .map(el => el.value);
+
+            document.querySelectorAll('.category-toggle-btn').forEach(b => b.classList.remove('active'));
+            const toggleBtn = checked.length === 1
+                ? document.querySelector(`.category-toggle-btn[data-collection="${checked[0]}"]`)
+                : document.querySelector('.category-toggle-btn[data-collection=""]');
+            if (toggleBtn) toggleBtn.classList.add('active');
 
             let result = [...PRODUCTS];
             if (checked.length > 0) {
@@ -1075,9 +1164,11 @@ function initShopPage() {
                     p.category.toLowerCase().includes(searchQuery)
                 );
             }
+            filtered = result;
             renderProducts(result);
         });
-    });
+        });
+    }
 
     // Sort
     const sortSelect = document.querySelector('.shop-toolbar__sort select');
@@ -1095,14 +1186,14 @@ function initShopPage() {
         });
     }
 
-    // Price range
+    // Price range (applies to current collection filter)
     const priceRange = document.querySelector('.price-range');
     const priceMax = document.getElementById('priceMax');
     if (priceRange) {
         priceRange.addEventListener('input', () => {
             const max = parseInt(priceRange.value);
             if (priceMax) priceMax.textContent = `$${max.toLocaleString()}`;
-            const result = PRODUCTS.filter(p => p.price <= max);
+            const result = filtered.filter(p => p.price <= max);
             renderProducts(result);
         });
     }
@@ -1115,11 +1206,20 @@ function initShopPage() {
         showToast(`Added ${currentDisplayedProducts.length} watches to cart`);
     });
 
-    // Buy All Now
+    // Buy All Now (currently displayed products)
     document.getElementById('buyAllNowBtn')?.addEventListener('click', () => {
         currentDisplayedProducts.forEach(p => {
             cart.add(p.id, 1, { color: getProductColors(p)[0].hex, strap: p.straps?.[0] });
         });
+        window.location.href = 'cart.html';
+    });
+
+    // Buy All Shop Items Now (entire catalog, regardless of filters)
+    document.getElementById('buyAllShopItemsBtn')?.addEventListener('click', () => {
+        PRODUCTS.forEach(p => {
+            cart.add(p.id, 1, { color: getProductColors(p)[0].hex, strap: p.straps?.[0] });
+        });
+        showToast(`Added all ${PRODUCTS.length} watches to cart`);
         window.location.href = 'cart.html';
     });
 }
@@ -1350,6 +1450,9 @@ function initCartPage() {
         if (subtotalEl) subtotalEl.textContent = `$${subtotal.toLocaleString()}`;
         if (shippingEl) shippingEl.textContent = shipping === 0 ? 'Free' : `$${shipping}`;
         if (totalEl) totalEl.textContent = `$${total.toLocaleString()}`;
+
+        const summary = document.querySelector('.cart-summary');
+        if (summary) summary.style.display = '';
     }
 
     renderCart();
@@ -1382,9 +1485,153 @@ function initCartPage() {
         }
     });
 
-    // Checkout button
-    document.getElementById('checkoutBtn')?.addEventListener('click', () => {
-        showToast('Thank you! Checkout feature coming soon.');
+    // Checkout link navigates to checkout.html (anchor tag for reliability)
+}
+
+// ==========================================
+// Checkout Page
+// ==========================================
+function initCheckoutPage() {
+    const checkoutContent = document.getElementById('checkoutContent');
+    const checkoutEmpty = document.getElementById('checkoutEmpty');
+    const checkoutForm = document.getElementById('checkoutForm');
+    const orderItemsEl = document.getElementById('checkoutOrderItems');
+    const orderSuccessModal = document.getElementById('orderSuccessModal');
+
+    if (!checkoutContent || !checkoutForm) return;
+
+    function renderCheckout() {
+        if (cart.items.length === 0) {
+            checkoutContent.style.display = 'none';
+            if (checkoutEmpty) checkoutEmpty.style.display = 'block';
+            return;
+        }
+        if (checkoutEmpty) checkoutEmpty.style.display = 'none';
+        checkoutContent.style.display = 'grid';
+
+        const subtotal = cart.getTotal();
+        const shipping = subtotal >= 500 ? 0 : 25;
+        const total = subtotal + shipping;
+
+        orderItemsEl.innerHTML = cart.items.map(item => `
+            <div class="checkout-order-item">
+                <div class="checkout-order-item__info">
+                    <span class="checkout-order-item__name">${item.name} × ${item.quantity}</span>
+                    <span class="checkout-order-item__price">$${(item.price * item.quantity).toLocaleString()}</span>
+                </div>
+            </div>
+        `).join('');
+
+        const subtotalEl = document.getElementById('checkoutSubtotal');
+        const shippingEl = document.getElementById('checkoutShipping');
+        const totalEl = document.getElementById('checkoutTotal');
+        if (subtotalEl) subtotalEl.textContent = `$${subtotal.toLocaleString()}`;
+        if (shippingEl) shippingEl.textContent = shipping === 0 ? 'Free' : `$${shipping}`;
+        if (totalEl) totalEl.textContent = `$${total.toLocaleString()}`;
+    }
+
+    renderCheckout();
+
+    checkoutForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        if (cart.items.length === 0) {
+            showToast('Your cart is empty');
+            return;
+        }
+
+        const formData = {
+            name: document.getElementById('checkoutName').value.trim(),
+            phone: document.getElementById('checkoutPhone').value.trim(),
+            address: document.getElementById('checkoutAddress').value.trim(),
+            zila: document.getElementById('checkoutZila').value.trim(),
+            country: document.getElementById('checkoutCountry')?.value || 'Bangladesh',
+            payment: document.querySelector('input[name="payment"]:checked')?.value || 'cod'
+        };
+
+        if (!formData.name || !formData.phone || !formData.address || !formData.zila) {
+            showToast('Please fill in all required fields');
+            return;
+        }
+
+        const subtotal = cart.getTotal();
+        const shipping = subtotal >= 500 ? 0 : 25;
+        const total = subtotal + shipping;
+
+        const orderItems = cart.items.map(item => `• ${item.name} x${item.quantity} - $${(item.price * item.quantity).toLocaleString()}`).join('\n');
+
+        const emailBody = [
+            '=== NEW ORDER - Time Blend ===',
+            '',
+            '--- CUSTOMER DETAILS ---',
+            `Name: ${formData.name}`,
+            `Phone: ${formData.phone}`,
+            `Address: ${formData.address}`,
+            `Zila: ${formData.zila}`,
+            `Country: ${formData.country}`,
+            `Payment: ${formData.payment.toUpperCase()}`,
+            '',
+            '--- ORDER ITEMS ---',
+            orderItems,
+            '',
+            '--- TOTALS ---',
+            `Subtotal: $${subtotal.toLocaleString()}`,
+            `Shipping: ${shipping === 0 ? 'Free' : '$' + shipping}`,
+            `Total: $${total.toLocaleString()}`
+        ].join('\n');
+
+        const placeOrderBtn = document.getElementById('placeOrderBtn');
+        if (placeOrderBtn) {
+            placeOrderBtn.disabled = true;
+            placeOrderBtn.textContent = 'Placing order...';
+        }
+
+        try {
+            const res = await fetch('https://formsubmit.co/ajax/timeblend17@gmail.com', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                body: JSON.stringify({
+                    _subject: `Time Blend Order: ${formData.name} - $${total.toLocaleString()}`,
+                    _template: 'box',
+                    Name: formData.name,
+                    Phone: formData.phone,
+                    Address: formData.address,
+                    Zila: formData.zila,
+                    Payment: 'Cash on Delivery',
+                    Order: emailBody
+                })
+            });
+
+            const data = await res.json();
+            if (data.success) {
+                cart.clear();
+                renderCheckout();
+                checkoutForm.reset();
+                document.querySelector('.payment-option--selected')?.classList.remove('payment-option--selected');
+                document.querySelector('.payment-option')?.classList.add('payment-option--selected');
+                if (orderSuccessModal) orderSuccessModal.classList.add('active');
+            } else {
+                throw new Error(data.message || 'Failed to send order');
+            }
+        } catch (err) {
+            showToast('Order could not be sent. Please try again or call 01869745376');
+        } finally {
+            if (placeOrderBtn) {
+                placeOrderBtn.disabled = false;
+                placeOrderBtn.textContent = 'Place Order (Cash on Delivery)';
+            }
+        }
+    });
+
+    orderSuccessModal?.querySelector('.modal__overlay')?.addEventListener('click', () => orderSuccessModal.classList.remove('active'));
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && orderSuccessModal?.classList.contains('active')) orderSuccessModal.classList.remove('active');
+    });
+
+    document.querySelectorAll('.payment-option').forEach(opt => {
+        opt.addEventListener('click', () => {
+            document.querySelectorAll('.payment-option').forEach(o => o.classList.remove('payment-option--selected'));
+            opt.classList.add('payment-option--selected');
+        });
     });
 }
 
@@ -1729,6 +1976,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initShopPage();
     initProductDetail();
     initCartPage();
+    initCheckoutPage();
     initWishlist();
     initParticles();
     initHeroSlider();
