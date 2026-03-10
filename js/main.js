@@ -1532,7 +1532,7 @@ function initCheckoutPage() {
 
     renderCheckout();
 
-    checkoutForm.addEventListener('submit', async (e) => {
+    checkoutForm.addEventListener('submit', (e) => {
         e.preventDefault();
         if (cart.items.length === 0) {
             showToast('Your cart is empty');
@@ -1562,15 +1562,15 @@ function initCheckoutPage() {
         const emailBody = [
             '=== NEW ORDER - Time Blend ===',
             '',
-            '--- CUSTOMER DETAILS ---',
+            '--- CUSTOMER ---',
             `Name: ${formData.name}`,
             `Phone: ${formData.phone}`,
             `Address: ${formData.address}`,
             `Zila: ${formData.zila}`,
             `Country: ${formData.country}`,
-            `Payment: ${formData.payment.toUpperCase()}`,
+            `Payment: Cash on Delivery`,
             '',
-            '--- ORDER ITEMS ---',
+            '--- ITEMS ---',
             orderItems,
             '',
             '--- TOTALS ---',
@@ -1582,45 +1582,44 @@ function initCheckoutPage() {
         const placeOrderBtn = document.getElementById('placeOrderBtn');
         if (placeOrderBtn) {
             placeOrderBtn.disabled = true;
-            placeOrderBtn.textContent = 'Placing order...';
+            placeOrderBtn.textContent = 'Sending order...';
         }
 
-        try {
-            const res = await fetch('https://formsubmit.co/ajax/timeblend17@gmail.com', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-                body: JSON.stringify({
-                    _subject: `Time Blend Order: ${formData.name} - $${total.toLocaleString()}`,
-                    _template: 'box',
-                    Name: formData.name,
-                    Phone: formData.phone,
-                    Address: formData.address,
-                    Zila: formData.zila,
-                    Payment: 'Cash on Delivery',
-                    Order: emailBody
-                })
-            });
+        const nextUrl = window.location.origin + window.location.pathname + '?ordered=1';
+        const form = document.createElement('form');
+        form.method = 'POST';
+        form.action = 'https://formsubmit.co/timeblend17@gmail.com';
+        form.style.display = 'none';
 
-            const data = await res.json();
-            if (data.success) {
-                cart.clear();
-                renderCheckout();
-                checkoutForm.reset();
-                document.querySelector('.payment-option--selected')?.classList.remove('payment-option--selected');
-                document.querySelector('.payment-option')?.classList.add('payment-option--selected');
-                if (orderSuccessModal) orderSuccessModal.classList.add('active');
-            } else {
-                throw new Error(data.message || 'Failed to send order');
-            }
-        } catch (err) {
-            showToast('Order could not be sent. Please try again or call 01869745376');
-        } finally {
-            if (placeOrderBtn) {
-                placeOrderBtn.disabled = false;
-                placeOrderBtn.textContent = 'Place Order (Cash on Delivery)';
-            }
+        const fields = {
+            _subject: `Time Blend Order: ${formData.name} - $${total.toLocaleString()}`,
+            _next: nextUrl,
+            _captcha: 'false',
+            _template: 'box',
+            Name: formData.name,
+            Phone: formData.phone,
+            Address: formData.address,
+            Zila: formData.zila,
+            'Order Details': emailBody
+        };
+
+        for (const [name, value] of Object.entries(fields)) {
+            const input = document.createElement('input');
+            input.type = 'hidden';
+            input.name = name;
+            input.value = value;
+            form.appendChild(input);
         }
+
+        document.body.appendChild(form);
+        cart.clear();
+        form.submit();
     });
+
+    if (new URLSearchParams(window.location.search).get('ordered') === '1') {
+        if (orderSuccessModal) orderSuccessModal.classList.add('active');
+        window.history.replaceState({}, '', window.location.pathname);
+    }
 
     orderSuccessModal?.querySelector('.modal__overlay')?.addEventListener('click', () => orderSuccessModal.classList.remove('active'));
     document.addEventListener('keydown', (e) => {
@@ -1632,6 +1631,29 @@ function initCheckoutPage() {
             document.querySelectorAll('.payment-option').forEach(o => o.classList.remove('payment-option--selected'));
             opt.classList.add('payment-option--selected');
         });
+    });
+
+    document.getElementById('emailOrderManually')?.addEventListener('click', () => {
+        if (cart.items.length === 0) {
+            showToast('Your cart is empty');
+            return;
+        }
+        const name = document.getElementById('checkoutName').value.trim();
+        const phone = document.getElementById('checkoutPhone').value.trim();
+        const address = document.getElementById('checkoutAddress').value.trim();
+        const zila = document.getElementById('checkoutZila').value.trim();
+        if (!name || !phone || !address || !zila) {
+            showToast('Please fill in all required fields first');
+            return;
+        }
+        const subtotal = cart.getTotal();
+        const shipping = subtotal >= 500 ? 0 : 25;
+        const total = subtotal + shipping;
+        const orderItems = cart.items.map(item => `• ${item.name} x${item.quantity} - $${(item.price * item.quantity).toLocaleString()}`).join('\n');
+        const body = encodeURIComponent(
+            `NEW ORDER - Time Blend\n\nCUSTOMER:\nName: ${name}\nPhone: ${phone}\nAddress: ${address}\nZila: ${zila}\n\nORDER ITEMS:\n${orderItems}\n\nTOTAL: $${total.toLocaleString()}`
+        );
+        window.location.href = `mailto:timeblend17@gmail.com?subject=Order from ${encodeURIComponent(name)} - $${total}&body=${body}`;
     });
 }
 
