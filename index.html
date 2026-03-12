@@ -323,7 +323,10 @@
                         <p class="product-card__desc">42mm automatic, sapphire crystal</p>
                         <div class="product-card__footer">
                             <span class="product-card__price">$1,295</span>
-                            <button class="btn btn--small add-to-cart-btn" data-product-id="1" data-name="Midnight Sovereign" data-price="1295">Add to Cart</button>
+                            <div class="product-card__btns">
+                                <button class="btn btn--small add-to-cart-btn" data-product-id="1">Add to Cart</button>
+                                <button class="btn btn--small btn--primary buy-now-btn" data-product-id="1">Buy Now</button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -356,7 +359,10 @@
                         <p class="product-card__desc">44mm quartz, water-resistant 200m</p>
                         <div class="product-card__footer">
                             <span class="product-card__price">$895</span>
-                            <button class="btn btn--small add-to-cart-btn" data-product-id="2" data-name="Azure Chronograph" data-price="895">Add to Cart</button>
+                            <div class="product-card__btns">
+                                <button class="btn btn--small add-to-cart-btn" data-product-id="2">Add to Cart</button>
+                                <button class="btn btn--small btn--primary buy-now-btn" data-product-id="2">Buy Now</button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -388,7 +394,10 @@
                         <p class="product-card__desc">40mm automatic, 18K gold case</p>
                         <div class="product-card__footer">
                             <span class="product-card__price">$2,450</span>
-                            <button class="btn btn--small add-to-cart-btn" data-product-id="3" data-name="Golden Heritage" data-price="2450">Add to Cart</button>
+                            <div class="product-card__btns">
+                                <button class="btn btn--small add-to-cart-btn" data-product-id="3">Add to Cart</button>
+                                <button class="btn btn--small btn--primary buy-now-btn" data-product-id="3">Buy Now</button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -424,7 +433,10 @@
                                 <span class="product-card__price">$720</span>
                                 <span class="product-card__price--old">$899</span>
                             </div>
-                            <button class="btn btn--small add-to-cart-btn" data-product-id="4" data-name="Rustic Navigator" data-price="720">Add to Cart</button>
+                            <div class="product-card__btns">
+                                <button class="btn btn--small add-to-cart-btn" data-product-id="4">Add to Cart</button>
+                                <button class="btn btn--small btn--primary buy-now-btn" data-product-id="4">Buy Now</button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1389,6 +1401,12 @@
     <div class="toast" id="toast">
         <span class="toast__message" id="toastMessage"></span>
     </div>
+
+    <!-- Call Button -->
+    <a href="tel:+8801869745376" class="call-btn" aria-label="Call us">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        <span class="call-btn__tooltip">Call 01869745376</span>
+    </a>
 
     <!-- WhatsApp Button -->
     <a href="https://wa.me/8801869745376?text=Hello%20Time%20Blend!%20I%27m%20interested%20in%20your%20watches." class="whatsapp-btn" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
